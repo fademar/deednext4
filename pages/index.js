@@ -45,6 +45,9 @@ const columns = [
 ];
 
 function Index(props) {
+  const arrayFields = JSON.stringify(props.fields);
+  console.log(arrayFields);
+
   return (
     <Container>
       <Header />
@@ -170,7 +173,7 @@ function Index(props) {
           <Content style={{ marginTop: "100px" }}>
             <DataSearch
               componentId="SearchSensor"
-              dataField={["deedName"]}
+              dataField={arrayFields}
               queryFormat="and"
               autosuggest={true}
               filterLabel="search"
