@@ -1,20 +1,10 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const { Client } = require("@elastic/elasticsearch");
+var _ = require("lodash");
 
 const router = express.Router();
 const client = new Client({ node: "http://localhost:9200" });
-
-const flatten = (obj, prefix = "", res = {}) =>
-  Object.entries(obj).reduce((r, [key, val]) => {
-    const k = `${prefix}${key}`;
-    if (typeof val === "object") {
-      flatten(val, `${k}.`, r);
-    } else {
-      res[k] = val;
-    }
-    return r;
-  }, res);
 
 router.use(bodyParser.json());
 
@@ -25,7 +15,13 @@ router.get("/elasticapi/fields", (req, res) => {
       if (error) {
         console.log(error);
       } else {
-        res.send(Object.keys(response.body.deeds.mappings));
+        res.send(
+          _.sortedUniq(
+            _.filter(Object.keys(response.body.deeds.mappings), function(o) {
+              return !o.includes(".keyword") && !o.includes("_");
+            }).sort()
+          )
+        );
       }
     }
   );
