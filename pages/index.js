@@ -44,10 +44,13 @@ const columns = [
   }
 ];
 
-function Index(props) {
-  const arrayFields = JSON.stringify(props.fields);
-  console.log(arrayFields);
+function fullQuery(value, props) {
+  return {
+    "query":{"multi_match":{"query":value, "type":"cross_fields"}}
+  };
+}
 
+function Index(props) {
   return (
     <Container>
       <Header />
@@ -172,12 +175,15 @@ function Index(props) {
         <Layout style={{ padding: "0 24px 24px" }}>
           <Content style={{ marginTop: "100px" }}>
             <DataSearch
-              componentId="SearchSensor"
-              dataField={arrayFields}
+              componentId="searchSensor"
+              dataField={["deedName"]}
               queryFormat="and"
               autosuggest={true}
               filterLabel="search"
+              placeholder="Type any term"
               URLParams={true}
+              customQuery={fullQuery}
+              debounce={100}
             />
             <SelectedFilters
               showClearAll={true}
@@ -202,7 +208,7 @@ function Index(props) {
               noResults="No results were found..."
               render={({ loading, error, data }) => {
                 if (loading) {
-                  return <div>Fetching Results.</div>;
+                  return <div>Fetching Results...</div>;
                 }
                 if (error) {
                   return (
