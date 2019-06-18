@@ -11,7 +11,8 @@ function AppSider(props) {
         height: "100vh",
         position: "fixed",
         left: 0,
-        top: 64,
+        top: 0,
+        paddingTop: 64,
         background: "#fff"
       }}
     >
