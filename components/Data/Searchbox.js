@@ -71,7 +71,6 @@ function SearchBox(props) {
         debounce={300}
         react={{
           and: [
-            "searchSensor",
             "yearSensor",
             "agentSexSensor",
             "counterAgentSexSensor",
@@ -86,7 +85,7 @@ function SearchBox(props) {
 
 function fullQuery(value, props) {
   return {
-    query: { multi_match: { query: value, type: "cross_fields" } }
+    query: { multi_match: { query: value } }
   };
 }
 

@@ -403,8 +403,8 @@
       "fee": {
         "properties": {
           "altyn": {
-            "type": "scaled_float",
-            "scaling_factor": 100,
+            "type": "float",
+            "scaling_factor": 1000,
             "fields": { "text": { "type": "text" } }
           },
           "collected": {
@@ -412,7 +412,7 @@
           },
           "denga": {
             "type": "scaled_float",
-            "scaling_factor": 100,
+            "scaling_factor": 1000,
             "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
           },
           "roubles": {
@@ -426,7 +426,7 @@
         "properties": {
           "altyn": {
             "type": "scaled_float",
-            "scaling_factor": 100,
+            "scaling_factor": 1000,
             "fields": { "text": { "type": "text" } }
           },
           "collected": {
@@ -434,12 +434,12 @@
           },
           "denga": {
             "type": "scaled_float",
-            "scaling_factor": 100,
+            "scaling_factor": 1000,
             "fields": { "text": { "type": "text" } }
           },
           "roubles": {
             "type": "scaled_float",
-            "scaling_factor": 100,
+            "scaling_factor": 1000,
             "fields": { "text": { "type": "text" } }
           }
         }
@@ -602,7 +602,7 @@
               },
               "price": {
                 "type": "scaled_float",
-                "scaling_factor": 100,
+                "scaling_factor": 1000,
                 "fields": {
                   "text": { "type": "text" }
                 }
@@ -623,21 +623,21 @@
                     "properties": {
                       "altyny": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
                       },
                       "dengi": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
                       },
                       "rubli": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
@@ -648,21 +648,21 @@
                     "properties": {
                       "altyny": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
                       },
                       "dengi": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
                       },
                       "rubli": {
                         "type": "scaled_float",
-                        "scaling_factor": 100,
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
@@ -760,7 +760,8 @@
               "surface": {
                 "properties": {
                   "chetiVpole": {
-                    "type": "float",
+                    "type": "scaled_float",
+                    "scaling_factor": 1000,
                     "fields": {
                       "text": { "type": "text" }
                     }
@@ -768,13 +769,15 @@
                   "sazheni": {
                     "properties": {
                       "x": {
-                        "type": "float",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
                       },
                       "y": {
-                        "type": "float",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
                           "text": { "type": "text" }
                         }
@@ -794,9 +797,10 @@
           "money": {
             "properties": {
               "altyny": {
-                "type": "text",
+                "type": "scaled_float",
+                "scaling_factor": 1000,
                 "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                  "keyword": { "text": "text" }
                 }
               },
               "amount": {
@@ -804,21 +808,24 @@
                   "chekhi": {
                     "properties": {
                       "altyny": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": { "text": "text" }
                         }
                       },
                       "dengi": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": { "text": "text" }
                         }
                       },
                       "rubli": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": { "text": "text" }
                         }
                       }
                     }
@@ -826,18 +833,26 @@
                   "moscowSilver": {
                     "properties": {
                       "altyny": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": { "text": "text" }
                         }
                       },
                       "dengi": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": { "text": "text" }
                         }
                       },
-                      "rubli": { "type": "long" }
+                      "rubli": {
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
+                        "fields": {
+                          "keyword": { "text": "text" }
+                        }
+                      }
                     }
                   }
                 }
@@ -849,12 +864,19 @@
                 }
               },
               "dengi": {
-                "type": "text",
+                "type": "scaled_float",
+                "scaling_factor": 1000,
                 "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                  "keyword": { "text": "text" }
                 }
               },
-              "rubli": { "type": "long" }
+              "rubli": {
+                "type": "scaled_float",
+                "scaling_factor": 1000,
+                "fields": {
+                  "keyword": { "text": "text" }
+                }
+              }
             }
           },
           "other": {
@@ -864,10 +886,7 @@
           "parent": {
             "properties": {
               "coAgentNumber": {
-                "type": "text",
-                "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
-                }
+                "type": "integer"
               }
             }
           },
@@ -957,21 +976,21 @@
               "population": {
                 "properties": {
                   "female": {
-                    "type": "text",
+                    "type": "integer",
                     "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                      "text": { "type": "text" }
                     }
                   },
                   "households": {
-                    "type": "text",
+                    "type": "integer",
                     "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                      "text": { "type": "text" }
                     }
                   },
                   "male": {
-                    "type": "text",
+                    "type": "integer",
                     "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                      "text": { "type": "text" }
                     }
                   },
                   "operator": {
@@ -991,23 +1010,26 @@
               "surface": {
                 "properties": {
                   "chetiVpole": {
-                    "type": "text",
+                    "type": "scaled_float",
+                    "scaling_factor": 1000,
                     "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                      "text": { "type": "text" }
                     }
                   },
                   "sazheni": {
                     "properties": {
                       "x": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       },
                       "y": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       }
                     }
@@ -1025,9 +1047,10 @@
           "money": {
             "properties": {
               "altyny": {
-                "type": "text",
+                "type": "scaled_float",
+                "scaling_factor": 1000,
                 "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                  "text": { "type": "text" }
                 }
               },
               "amount": {
@@ -1035,21 +1058,24 @@
                   "chekhi": {
                     "properties": {
                       "altyny": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       },
                       "dengi": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       },
                       "rubli": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       }
                     }
@@ -1057,18 +1083,26 @@
                   "moscowSilver": {
                     "properties": {
                       "altyny": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       },
                       "dengi": {
-                        "type": "text",
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "text": { "type": "text" }
                         }
                       },
-                      "rubli": { "type": "long" }
+                      "rubli": {
+                        "type": "scaled_float",
+                        "scaling_factor": 1000,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      }
                     }
                   }
                 }
@@ -1080,12 +1114,19 @@
                 }
               },
               "dengi": {
-                "type": "text",
+                "type": "scaled_float",
+                "scaling_factor": 1000,
                 "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                  "text": { "type": "text" }
                 }
               },
-              "rubli": { "type": "long" }
+              "rubli": {
+                "type": "scaled_float",
+                "scaling_factor": 1000,
+                "fields": {
+                  "text": { "type": "text" }
+                }
+              }
             }
           },
           "parent": {
