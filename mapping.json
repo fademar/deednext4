@@ -1,0 +1,1157 @@
+{
+  "agent": {
+    "properties": {
+      "corporationName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "familyStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "firstName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "geogrStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "lastName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "names": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "nbParticipants": {
+        "type": "integer",
+        "fields": {
+          "text": { "type": "text" }
+        }
+      },
+      "patronyme": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "referentMale": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relationshipToAgent": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "relatedTo": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "socialStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "agentSex": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "coAgents": {
+    "properties": {
+      "coAgent": {
+        "properties": {
+          "familyStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "referentMale": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relationshipToCoAgent": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "coAgentSex": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "coCounterAgents": {
+    "properties": {
+      "coCounterAgent": {
+        "properties": {
+          "familyStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "referentMale": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relationshipToCoCounterAgent": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "coCounterAgentSex": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "collectiveCoAgent": {
+    "properties": {
+      "numberOfParticipants": {
+        "type": "integer",
+        "fields": { "text": { "type": "text" } }
+      },
+      "relationToAgent": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "statusesNames": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "collectiveCoCounterAgent": {
+    "properties": {
+      "numberOfParticipants": {
+        "type": "integer",
+        "fields": { "text": { "type": "text" } }
+      },
+      "relationToCounterAgent": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "statusesNames": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "complete": { "type": "boolean" },
+  "counterAgent": {
+    "properties": {
+      "corporationName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "familyStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "firstName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "geogrStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "lastName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "names": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "nbParticipants": {
+        "type": "integer",
+        "fields": { "text": { "type": "text" } }
+      },
+      "patronyme": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "referentMale": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relationshipToCounterAgent": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "relatedTo": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "socialStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "counterAgentSex": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "deedCode": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "deedDate": {
+    "properties": {
+      "day": {
+        "type": "integer",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "month": {
+        "type": "integer",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "year": {
+        "type": "integer",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "deedLanguage": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "deedName": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "deedRef": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "fees": {
+    "properties": {
+      "fee": {
+        "properties": {
+          "altyn": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "text": { "type": "text" } }
+          },
+          "collected": {
+            "type": "boolean"
+          },
+          "denga": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "roubles": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "tax": {
+        "properties": {
+          "altyn": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "text": { "type": "text" } }
+          },
+          "collected": {
+            "type": "boolean"
+          },
+          "denga": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "text": { "type": "text" } }
+          },
+          "roubles": {
+            "type": "scaled_float",
+            "scaling_factor": 100,
+            "fields": { "text": { "type": "text" } }
+          }
+        }
+      }
+    }
+  },
+  "mongo_id": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "otherParticipants": {
+    "properties": {
+      "otherParticipant": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "role": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      }
+    }
+  },
+  "registrationDate": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "researcherNotes": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "schemaVersion": { "type": "integer" },
+  "scribe": {
+    "properties": {
+      "firstName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "geogrStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "lastName": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "patronyme": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "relatedTo": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "socialStatus": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "sureties": {
+    "properties": {
+      "surety": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      }
+    }
+  },
+  "transactions": {
+    "properties": {
+      "accusationAgainstAgent": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "accusationAgainstCounterAgent": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "advancePayment": {
+        "type": "boolean"
+      },
+      "agentAction": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "agentTransactionObjectType": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "agentTransactionObjects": {
+        "properties": {
+          "activity": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "asWhom": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "chattels": {
+            "properties": {
+              "description": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "origin": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "price": {
+                "type": "scaled_float",
+                "scaling_factor": 100,
+                "fields": {
+                  "text": { "type": "text" }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "debt": {
+            "properties": {
+              "amount": {
+                "properties": {
+                  "chekhi": {
+                    "properties": {
+                      "altyny": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      },
+                      "dengi": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      },
+                      "rubli": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      }
+                    }
+                  },
+                  "moscowSilver": {
+                    "properties": {
+                      "altyny": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      },
+                      "dengi": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      },
+                      "rubli": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100,
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "debtDate": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "debtorName": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "immovableProperty": {
+            "properties": {
+              "appurtenances": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "buildings": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "localisation": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "neighbours": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "origin": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "otherImmovablePropertyShare": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "population": {
+                "properties": {
+                  "female": {
+                    "type": "integer",
+                    "fields": {
+                      "text": { "type": "text" }
+                    }
+                  },
+                  "households": {
+                    "type": "integer",
+                    "fields": {
+                      "text": { "type": "text" }
+                    }
+                  },
+                  "male": {
+                    "type": "integer",
+                    "fields": {
+                      "text": { "type": "text" }
+                    }
+                  },
+                  "operator": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "share": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "surface": {
+                "properties": {
+                  "chetiVpole": {
+                    "type": "float",
+                    "fields": {
+                      "text": { "type": "text" }
+                    }
+                  },
+                  "sazheni": {
+                    "properties": {
+                      "x": {
+                        "type": "float",
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      },
+                      "y": {
+                        "type": "float",
+                        "fields": {
+                          "text": { "type": "text" }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "money": {
+            "properties": {
+              "altyny": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "amount": {
+                "properties": {
+                  "chekhi": {
+                    "properties": {
+                      "altyny": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "dengi": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "rubli": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      }
+                    }
+                  },
+                  "moscowSilver": {
+                    "properties": {
+                      "altyny": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "dengi": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "rubli": { "type": "long" }
+                    }
+                  }
+                }
+              },
+              "coins": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "dengi": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "rubli": { "type": "long" }
+            }
+          },
+          "other": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "parent": {
+            "properties": {
+              "coAgentNumber": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "toDoWhat": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "withFamily": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "contractConditions": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "contractDuration": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "counterAgentAction": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "counterAgentTransactionObjectType": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "counterAgentTransactionObjects": {
+        "properties": {
+          "chattels": {
+            "properties": {
+              "description": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "origin": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "price": { "type": "float" },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "immovableProperty": {
+            "properties": {
+              "appurtenances": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "buildings": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "localisation": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "neighbours": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "origin": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "population": {
+                "properties": {
+                  "female": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "households": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "male": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "operator": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "share": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "surface": {
+                "properties": {
+                  "chetiVpole": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "sazheni": {
+                    "properties": {
+                      "x": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "y": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "money": {
+            "properties": {
+              "altyny": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "amount": {
+                "properties": {
+                  "chekhi": {
+                    "properties": {
+                      "altyny": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "dengi": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "rubli": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      }
+                    }
+                  },
+                  "moscowSilver": {
+                    "properties": {
+                      "altyny": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "dengi": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      },
+                      "rubli": { "type": "long" }
+                    }
+                  }
+                }
+              },
+              "coins": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "dengi": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "rubli": { "type": "long" }
+            }
+          },
+          "parent": {
+            "properties": {
+              "coCounterAgentNumber": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "forfeit": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "juridicalProcedureStage": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "notesOnReverseSide": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "partialAdvance": {
+        "type": "text",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      }
+    }
+  },
+  "verbatimCitations": {
+    "type": "text",
+    "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+  },
+  "whitnesses": {
+    "properties": {
+      "whitness": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      }
+    }
+  }
+}

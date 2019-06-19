@@ -1,5 +1,4 @@
 import { Layout } from "antd";
-import fetch from "isomorphic-fetch";
 
 import Container from "../components/Layout/Container";
 import Header from "../components/Layout/Header";
@@ -10,7 +9,7 @@ import ResultsGrid from "../components/Data/Resultsgrid";
 import SearchBox from "../components/Data/Searchbox";
 import FacetBox from "../components/Data/Facetbox";
 
-function Index(props) {
+function Index() {
   return (
     <Container>
       <Header />
@@ -29,14 +28,4 @@ function Index(props) {
     </Container>
   );
 }
-
-Index.getInitialProps = async ({ req }) => {
-  const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
-  const res = await fetch(`${baseURL}/elasticapi/fields`);
-
-  return {
-    fields: await res.json()
-  };
-};
-
 export default Index;
