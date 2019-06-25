@@ -29,19 +29,13 @@ const columns = [
   }
 ];
 
-function ResultsGrid() {
+function ResultsGrid(props) {
   return (
     <ReactiveList
       componentId="results"
       dataField="deedName"
       react={{
-        and: [
-          "searchSensor",
-          "yearSensor",
-          "agentSexSensor",
-          "counterAgentSexSensor",
-          "agentNameSensor"
-        ]
+        and: props.sensors
       }}
       pagination
       paginationAt="bottom"

@@ -1,12 +1,14 @@
 import { Menu, Icon } from "antd";
 import { DataSearch, MultiList } from "@appbaseio/reactivesearch";
 
+import FacetYear from "./FacetData/Facetyear";
+import FacetAgent from "./FacetData/Facetagent";
+
 const { SubMenu } = Menu;
 
-function FacetBox() {
+function FacetBox(props) {
   return (
     <Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
-      {/* Facet for searching by Year */}
       <SubMenu
         key="year"
         title={
@@ -16,32 +18,8 @@ function FacetBox() {
           </span>
         }
       >
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="yearSensor"
-          dataField="deedDate.year.keyword"
-          size={20}
-          sortBy="desc"
-          queryFormat="or"
-          showCheckbox
-          showSearch
-          placeholder="Search for a Year"
-          react={{
-            and: [
-              "searchSensor",
-              "agentSexSensor",
-              "counterAgentSexSensor",
-              "agentNameSensor"
-            ]
-          }}
-          showFilter
-          showCount={true}
-          filterLabel="Year"
-          URLParams={false}
-        />
+        <FacetYear sensors={props.sensors} />
       </SubMenu>
-
-      {/* Facet for Agent searching */}
       <SubMenu
         key="agent"
         title={
@@ -51,49 +29,7 @@ function FacetBox() {
           </span>
         }
       >
-        <Menu.ItemGroup key="agentSexList" title="Agent Sex">
-          <MultiList
-            style={{ padding: "10px" }}
-            componentId="agentSexSensor"
-            dataField="agentSex.keyword"
-            size={10}
-            sortBy="desc"
-            queryFormat="or"
-            showCheckbox
-            react={{
-              and: [
-                "searchSensor",
-                "yearSensor",
-                "counterAgentSexSensor",
-                "agentNameSensor"
-              ]
-            }}
-            showSearch={false}
-            showFilter
-            showCount={true}
-            filterLabel="Agent"
-            URLParams={false}
-          />
-        </Menu.ItemGroup>
-        <Menu.ItemGroup key="agentName" title="Agent Name">
-          <DataSearch
-            style={{ padding: "10px" }}
-            componentId="agentNameSensor"
-            dataField={["agent.firstName", "agent.patronyme", "agent.lastName"]}
-            queryFormat="and"
-            autosuggest={true}
-            filterLabel="search"
-            react={{
-              and: [
-                "searchSensor",
-                "yearSensor",
-                "agentSexSensor",
-                "counterAgentSexSensor"
-              ]
-            }}
-            URLParams={true}
-          />
-        </Menu.ItemGroup>
+        <FacetAgent sensors={props.sensors} />
       </SubMenu>
       {/* Facet for Counter Agent search */}
       <SubMenu

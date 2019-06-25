@@ -4,9 +4,11 @@ const { Content } = Layout;
 
 function AppContent(props) {
   return (
-    <Content style={{ padding: "0 0 50px 200px", marginTop: 100 }}>
-      {props.children}
-    </Content>
+    <Layout style={{ padding: "0 24px 24px" }}>
+      <Content style={{ padding: "0 0 50px 200px", marginTop: 100 }}>
+        {props.children}
+      </Content>
+    </Layout>
   );
 }
 

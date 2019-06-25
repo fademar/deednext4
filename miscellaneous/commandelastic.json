@@ -1,0 +1,1510 @@
+curl -X DELETE "localhost:9200/deeds?pretty"
+curl -X GET "localhost:9200/_cat/indices?v"
+
+
+curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ngram_russian": {
+          "tokenizer": "autocomplete",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "autocomplete_search": {
+          "tokenizer": "lowercase"
+        }
+      },
+      "tokenizer": {
+        "autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 3,
+          "max_gram": 10,
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "agent": {
+        "properties": {
+          "corporationName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "familyStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "firstName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "names": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "nbParticipants": {
+            "type": "integer"
+          },
+          "patronyme": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "referentMale": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relationshipToAgent": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "relatedTo": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "agentSex": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "coAgents": {
+        "properties": {
+          "coAgent": {
+            "properties": {
+              "familyStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "referentMale": {
+                "properties": {
+                  "firstName": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "geogrStatus": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "lastName": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "patronyme": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "relatedTo": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "relationshipToCoAgent": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "socialStatus": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "coAgentSex": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "coCounterAgents": {
+        "properties": {
+          "coCounterAgent": {
+            "properties": {
+              "familyStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "referentMale": {
+                "properties": {
+                  "firstName": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "geogrStatus": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "lastName": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "patronyme": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "relatedTo": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "relationshipToCoCounterAgent": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "socialStatus": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "coCounterAgentSex": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "collectiveCoAgent": {
+        "properties": {
+          "numberOfParticipants": {
+            "type": "integer"
+          },
+          "relationToAgent": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "statusesNames": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "collectiveCoCounterAgent": {
+        "properties": {
+          "numberOfParticipants": {
+            "type": "integer"
+          },
+          "relationToCounterAgent": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "statusesNames": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "complete": { "type": "boolean" },
+      "counterAgent": {
+        "properties": {
+          "corporationName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "familyStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "firstName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "names": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "nbParticipants": {
+            "type": "integer"
+          },
+          "patronyme": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "referentMale": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relationshipToCounterAgent": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "relatedTo": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "counterAgentSex": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "deedCode": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "deedDate": {
+        "properties": {
+          "day": {
+            "type": "integer"
+          },
+          "month": {
+            "type": "integer"
+          },
+          "year": {
+            "type": "integer"
+          }
+        }
+      },
+      "deedLanguage": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "deedName": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "deedRef": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "fees": {
+        "properties": {
+          "fee": {
+            "properties": {
+              "altyn": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              },
+              "collected": {
+                "type": "boolean"
+              },
+              "denga": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              },
+              "roubles": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              }
+            }
+          },
+          "tax": {
+            "properties": {
+              "altyn": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              },
+              "collected": {
+                "type": "boolean"
+              },
+              "denga": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              },
+              "roubles": {
+                "type": "scaled_float",
+                "scaling_factor": "1000"
+              }
+            }
+          }
+        }
+      },
+      "mongo_id": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "otherParticipants": {
+        "properties": {
+          "otherParticipant": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "role": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "registrationDate": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "researcherNotes": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "schemaVersion": { "type": "integer" },
+      "scribe": {
+        "properties": {
+          "firstName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "geogrStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "lastName": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "patronyme": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "relatedTo": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "socialStatus": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          }
+        }
+      },
+      "sureties": {
+        "properties": {
+          "surety": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "transactions": {
+        "properties": {
+          "accusationAgainstAgent": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "accusationAgainstCounterAgent": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "advancePayment": {
+            "type": "boolean"
+          },
+          "agentAction": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "agentTransactionObjectType": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "agentTransactionObjects": {
+            "properties": {
+              "activity": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "asWhom": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "chattels": {
+                "properties": {
+                  "description": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "origin": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "price": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "type": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "debt": {
+                "properties": {
+                  "amount": {
+                    "properties": {
+                      "chekhi": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      },
+                      "moscowSilver": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "debtDate": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "debtorName": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "immovableProperty": {
+                "properties": {
+                  "appurtenances": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "buildings": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "localisation": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "neighbours": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "origin": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "otherImmovablePropertyShare": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "population": {
+                    "properties": {
+                      "female": {
+                        "type": "integer"
+                      },
+                      "households": {
+                        "type": "integer"
+                      },
+                      "male": {
+                        "type": "integer"
+                      },
+                      "operator": {
+                        "type": "text",
+                        "analyzer": "ngram_russian",
+                        "search_analyzer": "autocomplete_search",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      }
+                    }
+                  },
+                  "share": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "surface": {
+                    "properties": {
+                      "chetiVpole": {
+                        "type": "scaled_float",
+                        "scaling_factor": "1000"
+                      },
+                      "sazheni": {
+                        "properties": {
+                          "x": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "y": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "money": {
+                "properties": {
+                  "amount": {
+                    "properties": {
+                      "chekhi": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      },
+                      "moscowSilver": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "coins": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "dengi": {
+                    "type": "scaled_float",
+                    "scaling_factor": "1000"
+                  },
+                  "rubli": {
+                    "type": "scaled_float",
+                    "scaling_factor": "1000"
+                  }
+                }
+              },
+              "other": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "parent": {
+                "properties": {
+                  "coAgentNumber": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "toDoWhat": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "withFamily": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "contractConditions": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "contractDuration": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "counterAgentAction": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "counterAgentTransactionObjectType": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "counterAgentTransactionObjects": {
+            "properties": {
+              "chattels": {
+                "properties": {
+                  "description": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "origin": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "price": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "type": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "immovableProperty": {
+                "properties": {
+                  "appurtenances": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "buildings": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "localisation": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "neighbours": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "origin": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "population": {
+                    "properties": {
+                      "female": {
+                        "type": "integer"
+                      },
+                      "households": {
+                        "type": "integer"
+                      },
+                      "male": {
+                        "type": "integer"
+                      },
+                      "operator": {
+                        "type": "text",
+                        "analyzer": "ngram_russian",
+                        "search_analyzer": "autocomplete_search",
+                        "fields": {
+                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                        }
+                      }
+                    }
+                  },
+                  "share": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "surface": {
+                    "properties": {
+                      "chetiVpole": {
+                        "type": "scaled_float",
+                        "scaling_factor": "1000"
+                      },
+                      "sazheni": {
+                        "properties": {
+                          "x": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "y": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              },
+              "money": {
+                "properties": {
+                  "amount": {
+                    "properties": {
+                      "chekhi": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      },
+                      "moscowSilver": {
+                        "properties": {
+                          "altyny": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "dengi": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          },
+                          "rubli": {
+                            "type": "scaled_float",
+                            "scaling_factor": "1000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "coins": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "dengi": {
+                    "type": "scaled_float",
+                    "scaling_factor": "1000"
+                  },
+                  "rubli": {
+                    "type": "scaled_float",
+                    "scaling_factor": "1000"
+                  }
+                }
+              },
+              "parent": {
+                "properties": {
+                  "coCounterAgentNumber": {
+                    "type": "text",
+                    "analyzer": "ngram_russian",
+                    "search_analyzer": "autocomplete_search",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "forfeit": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "juridicalProcedureStage": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "notesOnReverseSide": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
+          "partialAdvance": {
+            "type": "boolean"
+          }
+        }
+      },
+      "verbatimCitations": {
+        "type": "text",
+        "analyzer": "ngram_russian",
+        "search_analyzer": "autocomplete_search",
+        "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "whitnesses": {
+        "properties": {
+          "whitness": {
+            "properties": {
+              "firstName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "geogrStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "lastName": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "patronyme": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "relatedTo": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "socialStatus": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+'
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@deeds_for_index.json"
+curl "localhost:9200/_cat/indices?v"
+
+купчая
+
+Филимонов
