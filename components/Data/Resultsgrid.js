@@ -38,8 +38,8 @@ function ResultsGrid(props) {
         and: props.sensors
       }}
       pagination
+      pages={10}
       paginationAt="bottom"
-      pages={5}
       Loader="Loading..."
       noResults="No results were found..."
       render={({ loading, error, data }) => {

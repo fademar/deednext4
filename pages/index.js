@@ -1,5 +1,5 @@
 import fetch from "isomorphic-fetch";
-import { Layout } from "antd";
+import { PageHeader } from "antd";
 
 import Container from "../components/Layout/Container";
 import AppHeader from "../components/Layout/Header";
@@ -22,7 +22,6 @@ function Index(props) {
         <SearchBox fields={props.fields} sensors={props.sensors} />
         <ResultsGrid sensors={props.sensors} />
       </AppContent>
-      <AppFooter />
     </Container>
   );
 }
@@ -38,7 +37,10 @@ Index.getInitialProps = async ({ req }) => {
       "yearSensor",
       "agentSexSensor",
       "counterAgentSexSensor",
-      "agentNameSensor"
+      "agentNameSensor",
+      "counterAgentNameSensor",
+      "agentGeogrStatusSensor",
+      "counterAgentGeogrStatusSensor"
     ]
   };
 };

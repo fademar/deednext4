@@ -6,7 +6,7 @@ function AppSider(props) {
   return (
     <Layout>
       <Sider
-        width={200}
+        width={400}
         style={{
           overflow: "auto",
           height: "100vh",

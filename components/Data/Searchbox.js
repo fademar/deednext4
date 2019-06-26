@@ -17,7 +17,6 @@ function SearchBox(props) {
           and: props.sensors
         }}
       />
-
       <SelectedFilters showClearAll={true} clearAllLabel="Clear filters" />
     </>
   );
