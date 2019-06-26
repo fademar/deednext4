@@ -1,5 +1,4 @@
 import { Collapse, Icon } from "antd";
-import { DataSearch, MultiList } from "@appbaseio/reactivesearch";
 
 import FacetYear from "./FacetData/Facetyear";
 import FacetContractingParties from "./FacetData/FacetParties";
