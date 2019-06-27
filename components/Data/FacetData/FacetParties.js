@@ -6,6 +6,7 @@ const { Option } = Select;
 function FacetContractingParties(props) {
   return (
     <>
+      {/* AGENT */}
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Agent</Divider>
         <MultiList
@@ -39,6 +40,20 @@ function FacetContractingParties(props) {
           URLParams={true}
           title="Name"
         />
+        <DataSearch
+          style={{ padding: "10px" }}
+          componentId="agentSocialStatusSensor"
+          dataField={["agent.socialStatus"]}
+          queryFormat="and"
+          placeholder={"Search for Agent Social Status"}
+          autosuggest={true}
+          react={{
+            and: sensorsList(props.sensors, "agentSocialStatusSensor")
+          }}
+          filterLabel={"Agent Social Status"}
+          URLParams={true}
+          title="Social Status"
+        />
         <MultiList
           style={{ padding: "10px" }}
           componentId="agentGeogrStatusSensor"
@@ -55,6 +70,7 @@ function FacetContractingParties(props) {
           title="Geogr Status"
         />
       </div>
+      {/* COUNTER AGENT */}
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Counter Agent</Divider>
         <MultiList
@@ -91,6 +107,20 @@ function FacetContractingParties(props) {
           filterLabel="counterAgent Name"
           URLParams={true}
           title="Name"
+        />
+        <DataSearch
+          style={{ padding: "10px" }}
+          componentId="counterAgentSocialStatusSensor"
+          dataField={["counterAgent.socialStatus"]}
+          queryFormat="and"
+          placeholder={"Search for CounterAgent Social Status"}
+          autosuggest={true}
+          react={{
+            and: sensorsList(props.sensors, "counterAgentSocialStatusSensor")
+          }}
+          filterLabel={"Counter Agent Social Status"}
+          URLParams={true}
+          title="Social Status"
         />
         <MultiList
           style={{ padding: "10px" }}

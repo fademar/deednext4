@@ -40,7 +40,15 @@ Index.getInitialProps = async ({ req }) => {
       "agentNameSensor",
       "counterAgentNameSensor",
       "agentGeogrStatusSensor",
-      "counterAgentGeogrStatusSensor"
+      "counterAgentGeogrStatusSensor",
+      "agentSocialStatusSensor",
+      "counterAgentSocialStatusSensor",
+      "coAgentSexSensor",
+      "coAounterAgentSexSensor",
+      "collectiveCoAgentsSensor",
+      "collectiveCoCounterAgentsSensor",
+      "agentActionSensor",
+      "agentTransactionObjectsSensor"
     ]
   };
 };
