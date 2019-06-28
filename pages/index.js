@@ -48,6 +48,7 @@ Index.getInitialProps = async ({ req }) => {
       "collectiveCoAgentsSensor",
       "collectiveCoCounterAgentsSensor",
       "agentActionSensor",
+      "counterAgentActionSensor",
       "agentTransactionObjectsSensor"
     ]
   };
