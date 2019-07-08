@@ -14,7 +14,11 @@ function FacetBox(props) {
         <FacetYear sensors={props.sensors} />
       </Panel>
       <Panel header="Contracting Parties" key="ContractingPartiesPanel">
-        <FacetContractingParties sensors={props.sensors} />
+        <FacetContractingParties sensors={props.sensors} party={"agent"} />
+        <FacetContractingParties
+          sensors={props.sensors}
+          party={"counterAgent"}
+        />
       </Panel>
       <Panel header="Co-Contracting Parties" key="CoContractingPartiesPanel">
         <FacetCoContractingParties sensors={props.sensors} />
