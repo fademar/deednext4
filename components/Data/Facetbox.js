@@ -1,9 +1,9 @@
 import { Collapse, Icon } from "antd";
 
-import FacetYear from "./FacetData/Facetyear";
-import FacetContractingParties from "./FacetData/FacetParties";
-import FacetCoContractingParties from "./FacetData/FacetCoParties";
-import FacetTransactions from "./FacetData/FacetTransactions";
+import FacetYear from "./Facetyear";
+import FacetContractingParties from "./FacetParties";
+import FacetCoContractingParties from "./FacetCoParties";
+import FacetTransactions from "./FacetTransactions";
 
 const { Panel } = Collapse;
 

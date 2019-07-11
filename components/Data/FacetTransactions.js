@@ -9,7 +9,10 @@ import {
 function FacetTransactions(props) {
   const [agentAction, setAgentAction] = useState([]);
   const [counterAgentAction, setCounterAgentAction] = useState([]);
-  const what = [
+  const [showEngages, setShowEngages] = useState("none");
+  const [showWhatObject, setShowWhatObject] = useState("none");
+
+  const whatObject = [
     "chattels",
     "debt",
     "dependent",
@@ -24,13 +27,25 @@ function FacetTransactions(props) {
     "souls"
   ];
 
-  console.log(agentAction);
+  useEffect(() => {
+    agentAction.indexOf("engages") >= 0
+      ? setShowEngages("block")
+      : setShowEngages("none");
+    agentAction.indexOf("cedes") >= 0 ||
+    agentAction.indexOf("exchanges") >= 0 ||
+    agentAction.indexOf("mortgages") >= 0 ||
+    agentAction.indexOf("puts to rent") >= 0 ||
+    agentAction.indexOf("sells") >= 0 ||
+    agentAction.indexOf("bequeaths") >= 0
+      ? setShowWhatObject("block")
+      : setShowWhatObject("none");
+  }, [agentAction]);
 
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Agent</Divider>
-        <MultiDropdownList
+        <MultiList
           style={{ padding: "10px" }}
           componentId="agentActionSensor"
           dataField="transactions.agentAction.keyword"
@@ -43,21 +58,37 @@ function FacetTransactions(props) {
           showFilter
           showCount={true}
           filterLabel={"Agent Action"}
-          URLParams={true}
+          URLParams={false}
           title="Action"
           onValueChange={value => {
             setAgentAction(value);
           }}
         />
-        <MultiDropdownList
+      </div>
+      <div style={{ display: showEngages }}>
+        <MultiList
           style={{ padding: "10px" }}
           componentId="agentEngagesSensor"
           dataField="transactions.agentTransactionObjects.asWhom.keyword"
           sortBy="asc"
           showCheckbox
-          react={{
-            and: sensorsList(props.sensors, "agentEngagesSensor")
-          }}
+          react={{ and: sensorsList(props.sensors, "agentEngagesSensor") }}
+          showSearch={false}
+          showFilter
+          showCount={true}
+          filterLabel={"Engages"}
+          URLParams={true}
+          title="Engages"
+        />
+      </div>
+      <div style={{ display: showWhatObject }}>
+        <MultiList
+          style={{ padding: "10px" }}
+          componentId="agentWhatObjectSensor"
+          dataField="transactions.agentTransactionObjects.asWhom.keyword"
+          sortBy="asc"
+          showCheckbox
+          react={{ and: sensorsList(props.sensors, "agentEngagesSensor") }}
           showSearch={false}
           showFilter
           showCount={true}
