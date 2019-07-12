@@ -1,4 +1,6 @@
 import fetch from "isomorphic-fetch";
+import ndjsonStream from "can-ndjson-stream";
+
 import { PageHeader } from "antd";
 
 import Container from "../components/Layout/Container";
@@ -29,7 +31,6 @@ function Index(props) {
 Index.getInitialProps = async ({ req }) => {
   const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
   const res = await fetch(`${baseURL}/elasticapi/fields`);
-
   return {
     fields: await res.json(),
     sensors: [
