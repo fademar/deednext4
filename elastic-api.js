@@ -31,7 +31,7 @@ router.get("/elasticapi/data", (req, res) => {
   const readStream = fs.createReadStream(
     "./miscellaneous/deeds_for_index.ndjson"
   );
-  const writeStream = fs.createWriteStream("./miscellaneous/logout.json", {
+  const writeStream = fs.createWriteStream("./miscellaneous/logout.ndjson", {
     encoding: "utf8"
   });
   const lineReader = readLine.createInterface({
@@ -45,8 +45,8 @@ router.get("/elasticapi/data", (req, res) => {
         if (transaction.agentTransactionObjects) {
           transaction.agentTransactionObjects.forEach(
             agentTransactionObject => {
-              console.log(
-                "agent Object: " + Object.keys(agentTransactionObject)
+              agentTransactionObject.object = Object.keys(
+                agentTransactionObject
               );
             }
           );
@@ -54,14 +54,19 @@ router.get("/elasticapi/data", (req, res) => {
         if (transaction.counterAgentTransactionObjects) {
           transaction.counterAgentTransactionObjects.forEach(
             counterAgentTransactionObject => {
-              console.log(
-                "counter Object: " + Object.keys(counterAgentTransactionObject)
+              counterAgentTransactionObject.object = Object.keys(
+                counterAgentTransactionObject
               );
             }
           );
         }
       });
     }
+    let stringLine = JSON.stringify(json) + "\n";
+    writeStream.write(stringLine);
+  });
+  lineReader.on("close", () => {
+    writeStream.end();
   });
   res.end();
 });
