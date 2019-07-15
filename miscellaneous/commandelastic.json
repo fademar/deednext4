@@ -874,6 +874,14 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
           },
           "agentTransactionObjects": {
             "properties": {
+              "object": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
               "activity": {
                 "type": "text",
                 "analyzer": "ngram_russian",
@@ -1206,6 +1214,14 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
           },
           "counterAgentTransactionObjects": {
             "properties": {
+              "object": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
               "chattels": {
                 "properties": {
                   "description": {
@@ -1502,7 +1518,7 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
   }
 }
 '
-curl -H "Content-Type: application/json" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@deeds_for_index.json"
+curl -H "Content-Type: application/x-ndjson" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout.ndjson"
 curl "localhost:9200/_cat/indices?v"
 
 купчая

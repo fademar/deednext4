@@ -10,7 +10,7 @@ function FacetYear(props) {
   return (
     <MultiList
       style={{ padding: "10px" }}
-      componentId={sensorName}
+      componentId="yearSensor"
       dataField="deedDate.year"
       size={20}
       sortBy="desc"
@@ -18,7 +18,7 @@ function FacetYear(props) {
       showCheckbox
       showSearch={false}
       react={{
-        and: sensorsList(props.sensors, sensorName)
+        and: props.sensors
       }}
       showFilter
       showCount={true}

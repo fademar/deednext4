@@ -871,6 +871,14 @@
           },
           "agentTransactionObjects": {
             "properties": {
+              "object": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
               "activity": {
                 "type": "text",
                 "analyzer": "ngram_russian",
@@ -1210,6 +1218,14 @@
           },
           "counterAgentTransactionObjects": {
             "properties": {
+              "object": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
               "chattels": {
                 "properties": {
                   "description": {

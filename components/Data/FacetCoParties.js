@@ -256,6 +256,7 @@ function FacetCoContractingParties(props) {
 
 function sensorsList(array, name) {
   array.splice(array.indexOf(name), 1);
+  console.log(array);
   return array;
 }
 

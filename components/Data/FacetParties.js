@@ -5,8 +5,6 @@ import {
   MultiDropdownList
 } from "@appbaseio/reactivesearch";
 
-const { Option } = Select;
-
 function FacetContractingParties(props) {
   return (
     <>
@@ -20,7 +18,7 @@ function FacetContractingParties(props) {
           sortBy="desc"
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, props.party + "SexSensor")
+            and: props.sensors
           }}
           showSearch={false}
           showFilter
@@ -41,7 +39,7 @@ function FacetContractingParties(props) {
           placeholder={"Search for " + props.party + " name"}
           autosuggest={true}
           react={{
-            and: sensorsList(props.sensors, props.party + "NameSensor")
+            and: props.sensors
           }}
           filterLabel={props.party + " name"}
           URLParams={false}
@@ -55,7 +53,7 @@ function FacetContractingParties(props) {
           placeholder={"Search for " + props.party + " social status"}
           autosuggest={true}
           react={{
-            and: sensorsList(props.sensors, props.party + "SocialStatusSensor")
+            and: props.sensors
           }}
           filterLabel={props.party + " social status"}
           URLParams={false}
@@ -68,7 +66,7 @@ function FacetContractingParties(props) {
           showCheckbox
           showSearch={true}
           react={{
-            and: sensorsList(props.sensors, props.party + "GeogrStatusSensor")
+            and: props.sensors
           }}
           placeholder={"Search for " + props.party + " geogr status"}
           showFilter
@@ -80,11 +78,6 @@ function FacetContractingParties(props) {
       </div>
     </>
   );
-}
-
-function sensorsList(array, name) {
-  array.splice(array.indexOf(name), 1);
-  return array;
 }
 
 export default FacetContractingParties;

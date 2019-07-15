@@ -3,6 +3,7 @@ import { Divider } from "antd";
 import {
   DataSearch,
   MultiList,
+  MultiDataList,
   MultiDropdownList
 } from "@appbaseio/reactivesearch";
 
@@ -13,18 +14,18 @@ function FacetTransactions(props) {
   const [showWhatObject, setShowWhatObject] = useState("none");
 
   const whatObject = [
-    "chattels",
-    "debt",
-    "dependent",
-    "forfeit",
-    "fugitive souls",
-    "goods",
-    "immovable property",
-    "money",
-    "parent",
-    "responsibilities",
-    "share from estate",
-    "souls"
+    { label: "chattels", value: "chattels" },
+    { label: "debt", value: "debt" },
+    { label: "dependent", value: "dependent" },
+    { label: "forfeit", value: "forfeit" },
+    { label: "fugitive souls", value: "fugitive souls" },
+    { label: "goods", value: "goods" },
+    { label: "immovable property", value: "immovable property" },
+    { label: "money", value: "money" },
+    { label: "parent", value: "parent" },
+    { label: "responsibilities", value: "responsibilities" },
+    { label: "share from estate", value: "share from estate" },
+    { label: "souls", value: "souls" }
   ];
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function FacetTransactions(props) {
           sortBy="asc"
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "agentActionSensor")
+            and: props.sensors
           }}
           showSearch={false}
           showFilter
@@ -72,7 +73,7 @@ function FacetTransactions(props) {
           dataField="transactions.agentTransactionObjects.asWhom.keyword"
           sortBy="asc"
           showCheckbox
-          react={{ and: sensorsList(props.sensors, "agentEngagesSensor") }}
+          react={{ and: props.sensors }}
           showSearch={false}
           showFilter
           showCount={true}
@@ -82,19 +83,20 @@ function FacetTransactions(props) {
         />
       </div>
       <div style={{ display: showWhatObject }}>
-        <MultiList
+        <MultiDataList
           style={{ padding: "10px" }}
           componentId="agentWhatObjectSensor"
-          dataField="transactions.agentTransactionObjects.asWhom.keyword"
+          data={whatObject}
+          dataField="transactions.agentTransactionObjects.object.keyword"
           sortBy="asc"
           showCheckbox
-          react={{ and: sensorsList(props.sensors, "agentEngagesSensor") }}
+          react={{ and: props.sensors }}
           showSearch={false}
           showFilter
           showCount={true}
-          filterLabel={"Engages"}
+          filterLabel={"Object"}
           URLParams={true}
-          title="Engages"
+          title="Object"
         />
       </div>
       <div style={{ marginBottom: "10px" }}>
@@ -106,7 +108,7 @@ function FacetTransactions(props) {
           sortBy="asc"
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "counterAgentActionSensor")
+            and: props.sensors
           }}
           showSearch={false}
           showFilter
@@ -121,11 +123,6 @@ function FacetTransactions(props) {
       </div>
     </>
   );
-}
-
-function sensorsList(array, name) {
-  array.splice(array.indexOf(name), 1);
-  return array;
 }
 
 export default FacetTransactions;
