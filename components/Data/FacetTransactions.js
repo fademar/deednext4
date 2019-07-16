@@ -8,8 +8,10 @@ import {
 } from "@appbaseio/reactivesearch";
 
 function FacetTransactions(props) {
-  const [agentAction, setAgentAction] = useState([]);
-  const [counterAgentAction, setCounterAgentAction] = useState([]);
+  const newArray = (arr, index) => {
+    return arr.slice(0, index).concat(arr.slice(index + 1));
+  };
+  const [action, setAction] = useState([]);
   const [showEngages, setShowEngages] = useState("none");
   const [showWhatObject, setShowWhatObject] = useState("none");
 
@@ -20,7 +22,7 @@ function FacetTransactions(props) {
     { label: "forfeit", value: "forfeit" },
     { label: "fugitive souls", value: "fugitive souls" },
     { label: "goods", value: "goods" },
-    { label: "immovable property", value: "immovable property" },
+    { label: "immovable property", value: "immovableProperty" },
     { label: "money", value: "money" },
     { label: "parent", value: "parent" },
     { label: "responsibilities", value: "responsibilities" },
@@ -29,40 +31,45 @@ function FacetTransactions(props) {
   ];
 
   useEffect(() => {
-    agentAction.indexOf("engages") >= 0
+    action.indexOf("engages") >= 0
       ? setShowEngages("block")
       : setShowEngages("none");
-    agentAction.indexOf("cedes") >= 0 ||
-    agentAction.indexOf("exchanges") >= 0 ||
-    agentAction.indexOf("mortgages") >= 0 ||
-    agentAction.indexOf("puts to rent") >= 0 ||
-    agentAction.indexOf("sells") >= 0 ||
-    agentAction.indexOf("bequeaths") >= 0
+    action.indexOf("cedes") >= 0 ||
+    action.indexOf("exchanges") >= 0 ||
+    action.indexOf("mortgages") >= 0 ||
+    action.indexOf("puts to rent") >= 0 ||
+    action.indexOf("sells") >= 0 ||
+    action.indexOf("bequeaths") >= 0 ||
+    action.indexOf("lends") >= 0 ||
+    action.indexOf("pays") >= 0
       ? setShowWhatObject("block")
       : setShowWhatObject("none");
-  }, [agentAction]);
+  }, [action]);
 
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
-        <Divider orientation="left">Agent</Divider>
+        <Divider orientation="left">{props.party}</Divider>
         <MultiList
           style={{ padding: "10px" }}
-          componentId="agentActionSensor"
-          dataField="transactions.agentAction.keyword"
+          componentId={props.party + "ActionSensor"}
+          dataField={"transactions." + props.party + "Action.keyword"}
           sortBy="asc"
           showCheckbox
           react={{
-            and: props.sensors
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "ActionSensor")
+            )
           }}
           showSearch={false}
           showFilter
           showCount={true}
-          filterLabel={"Agent Action"}
+          filterLabel={props.party + " Action"}
           URLParams={false}
           title="Action"
           onValueChange={value => {
-            setAgentAction(value);
+            setAction(value);
           }}
         />
       </div>
@@ -73,7 +80,12 @@ function FacetTransactions(props) {
           dataField="transactions.agentTransactionObjects.asWhom.keyword"
           sortBy="asc"
           showCheckbox
-          react={{ and: props.sensors }}
+          react={{
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf("agentEngagesSensor")
+            )
+          }}
           showSearch={false}
           showFilter
           showCount={true}
@@ -83,42 +95,26 @@ function FacetTransactions(props) {
         />
       </div>
       <div style={{ display: showWhatObject }}>
-        <MultiDataList
+        <MultiList
           style={{ padding: "10px" }}
-          componentId="agentWhatObjectSensor"
-          data={whatObject}
-          dataField="transactions.agentTransactionObjects.object.keyword"
+          componentId={props.party + "WhatObjectSensor"}
+          dataField={
+            "transactions." + props.party + "TransactionObjects.object.keyword"
+          }
           sortBy="asc"
           showCheckbox
-          react={{ and: props.sensors }}
+          react={{
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "WhatObjectSensor")
+            )
+          }}
           showSearch={false}
           showFilter
           showCount={true}
           filterLabel={"Object"}
           URLParams={true}
           title="Object"
-        />
-      </div>
-      <div style={{ marginBottom: "10px" }}>
-        <Divider orientation="left">Counter Agent</Divider>
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="counterAgentActionSensor"
-          dataField="transactions.counterAgentAction.keyword"
-          sortBy="asc"
-          showCheckbox
-          react={{
-            and: props.sensors
-          }}
-          showSearch={false}
-          showFilter
-          showCount={true}
-          filterLabel={"CounterAgent Action"}
-          URLParams={true}
-          title="Action"
-          onValueChange={value => {
-            setCounterAgentAction(value);
-          }}
         />
       </div>
     </>

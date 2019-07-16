@@ -31,6 +31,7 @@ function Index(props) {
 Index.getInitialProps = async ({ req }) => {
   const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
   const res = await fetch(`${baseURL}/elasticapi/fields`);
+
   return {
     fields: await res.json(),
     sensors: [
@@ -51,7 +52,8 @@ Index.getInitialProps = async ({ req }) => {
       "agentActionSensor",
       "counterAgentActionSensor",
       "agentEngagesSensor",
-      "agentWhatObjectSensor"
+      "agentWhatObjectSensor",
+      "counterAgentWhatObjectSensor"
     ]
   };
 };

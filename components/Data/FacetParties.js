@@ -6,6 +6,9 @@ import {
 } from "@appbaseio/reactivesearch";
 
 function FacetContractingParties(props) {
+  const newArray = (arr, index) => {
+    return arr.slice(0, index).concat(arr.slice(index + 1));
+  };
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
@@ -18,7 +21,10 @@ function FacetContractingParties(props) {
           sortBy="desc"
           showCheckbox
           react={{
-            and: props.sensors
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "SexSensor")
+            )
           }}
           showSearch={false}
           showFilter
@@ -39,7 +45,10 @@ function FacetContractingParties(props) {
           placeholder={"Search for " + props.party + " name"}
           autosuggest={true}
           react={{
-            and: props.sensors
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "NameSensor")
+            )
           }}
           filterLabel={props.party + " name"}
           URLParams={false}
@@ -53,7 +62,10 @@ function FacetContractingParties(props) {
           placeholder={"Search for " + props.party + " social status"}
           autosuggest={true}
           react={{
-            and: props.sensors
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "SocialStatusSensor")
+            )
           }}
           filterLabel={props.party + " social status"}
           URLParams={false}
@@ -66,7 +78,10 @@ function FacetContractingParties(props) {
           showCheckbox
           showSearch={true}
           react={{
-            and: props.sensors
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf(props.party + "GeogrStatusSensor")
+            )
           }}
           placeholder={"Search for " + props.party + " geogr status"}
           showFilter

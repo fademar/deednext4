@@ -1,10 +1,9 @@
+import React, { useState, useEffect } from "react";
 import { MultiList } from "@appbaseio/reactivesearch";
 
 function FacetYear(props) {
-  const sensorName = "yearSensor";
-  const sensorsList = (array, name) => {
-    array.splice(array.indexOf(name), 1);
-    return array;
+  const newArray = (arr, index) => {
+    return arr.slice(0, index).concat(arr.slice(index + 1));
   };
 
   return (
@@ -18,7 +17,7 @@ function FacetYear(props) {
       showCheckbox
       showSearch={false}
       react={{
-        and: props.sensors
+        and: newArray(props.sensors, props.sensors.indexOf("yearSensor"))
       }}
       showFilter
       showCount={true}

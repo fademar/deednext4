@@ -24,7 +24,8 @@ function FacetBox(props) {
         <FacetCoContractingParties sensors={props.sensors} />
       </Panel>
       <Panel header="Transactions" key="TransactionsPanel">
-        <FacetTransactions sensors={props.sensors} />
+        <FacetTransactions sensors={props.sensors} party={"agent"} />
+        <FacetTransactions sensors={props.sensors} party={"counterAgent"} />
       </Panel>
     </Collapse>
   );

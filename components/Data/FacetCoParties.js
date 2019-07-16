@@ -8,6 +8,9 @@ import {
 const { Option } = Select;
 
 function FacetCoContractingParties(props) {
+  const newArray = (arr, index) => {
+    return arr.slice(0, index).concat(arr.slice(index + 1));
+  };
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
@@ -20,7 +23,10 @@ function FacetCoContractingParties(props) {
           sortBy="desc"
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "coAgentSexSensor")
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf("coAgentSexSensor")
+            )
           }}
           showSearch={false}
           showFilter
@@ -29,35 +35,6 @@ function FacetCoContractingParties(props) {
           URLParams={true}
           title="Sex"
         />
-        {/* <DataSearch
-          style={{ padding: "10px" }}
-          componentId="agentNameSensor"
-          dataField={["agent.firstName", "agent.patronyme", "agent.lastName"]}
-          queryFormat="and"
-          placeholder={"Search for Agent Name"}
-          autosuggest={true}
-          react={{
-            and: sensorsList(props.sensors, "agentNameSensor")
-          }}
-          filterLabel={"Agent Name"}
-          URLParams={true}
-          title="Name"
-        />
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="agentGeogrStatusSensor"
-          dataField="agent.geogrStatus.keyword"
-          showCheckbox
-          showSearch={true}
-          react={{
-            and: sensorsList(props.sensors, "agentGeogrStatusSensor")
-          }}
-          showFilter
-          showCount={true}
-          filterLabel="Agent Geogr Status"
-          URLParams={true}
-          title="Geogr Status"
-        /> */}
       </div>
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Co-Counter Agents</Divider>
@@ -69,7 +46,10 @@ function FacetCoContractingParties(props) {
           sortBy="desc"
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "coAounterAgentSexSensor")
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf("coAounterAgentSexSensor")
+            )
           }}
           showSearch={false}
           showFilter
@@ -78,39 +58,6 @@ function FacetCoContractingParties(props) {
           URLParams={true}
           title="Sex"
         />
-        {/* <DataSearch
-          style={{ padding: "10px" }}
-          componentId="counterAgentNameSensor"
-          dataField={[
-            "counterAgent.firstName",
-            "counterAgent.patronyme",
-            "counterAgent.lastName"
-          ]}
-          queryFormat="and"
-          placeholder={"Search for counterAgent Name"}
-          autosuggest={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentNameSensor")
-          }}
-          filterLabel="counterAgent Name"
-          URLParams={true}
-          title="Name"
-        />
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="counterAgentGeogrStatusSensor"
-          dataField="counterAgent.geogrStatus.keyword"
-          showCheckbox
-          showSearch={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentGeogrStatusSensor")
-          }}
-          showFilter
-          showCount={true}
-          filterLabel="counterAgent Geogr Status"
-          URLParams={true}
-          title="Geogr Status"
-        /> */}
       </div>
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Collective Co-Agents</Divider>
@@ -138,7 +85,10 @@ function FacetCoContractingParties(props) {
           ]}
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "collectiveCoAgentsSensor")
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf("collectiveCoAgentsSensor")
+            )
           }}
           showSearch={true}
           showFilter
@@ -147,39 +97,6 @@ function FacetCoContractingParties(props) {
           URLParams={true}
           title="Relation to Agent"
         />
-        {/* <DataSearch
-          style={{ padding: "10px" }}
-          componentId="counterAgentNameSensor"
-          dataField={[
-            "counterAgent.firstName",
-            "counterAgent.patronyme",
-            "counterAgent.lastName"
-          ]}
-          queryFormat="and"
-          placeholder={"Search for counterAgent Name"}
-          autosuggest={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentNameSensor")
-          }}
-          filterLabel="counterAgent Name"
-          URLParams={true}
-          title="Name"
-        />
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="counterAgentGeogrStatusSensor"
-          dataField="counterAgent.geogrStatus.keyword"
-          showCheckbox
-          showSearch={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentGeogrStatusSensor")
-          }}
-          showFilter
-          showCount={true}
-          filterLabel="counterAgent Geogr Status"
-          URLParams={true}
-          title="Geogr Status"
-        /> */}
       </div>
       <div style={{ marginBottom: "10px" }}>
         <Divider orientation="left">Collective Co-Counter Agents</Divider>
@@ -207,7 +124,10 @@ function FacetCoContractingParties(props) {
           ]}
           showCheckbox
           react={{
-            and: sensorsList(props.sensors, "collectiveCoCounterAgentsSensor")
+            and: newArray(
+              props.sensors,
+              props.sensors.indexOf("collectiveCoCounterAgentsSensor")
+            )
           }}
           showSearch={true}
           showFilter
@@ -216,48 +136,9 @@ function FacetCoContractingParties(props) {
           URLParams={true}
           title="Relation to CounterAgent"
         />
-        {/* <DataSearch
-          style={{ padding: "10px" }}
-          componentId="counterAgentNameSensor"
-          dataField={[
-            "counterAgent.firstName",
-            "counterAgent.patronyme",
-            "counterAgent.lastName"
-          ]}
-          queryFormat="and"
-          placeholder={"Search for counterAgent Name"}
-          autosuggest={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentNameSensor")
-          }}
-          filterLabel="counterAgent Name"
-          URLParams={true}
-          title="Name"
-        />
-        <MultiList
-          style={{ padding: "10px" }}
-          componentId="counterAgentGeogrStatusSensor"
-          dataField="counterAgent.geogrStatus.keyword"
-          showCheckbox
-          showSearch={true}
-          react={{
-            and: sensorsList(props.sensors, "counterAgentGeogrStatusSensor")
-          }}
-          showFilter
-          showCount={true}
-          filterLabel="counterAgent Geogr Status"
-          URLParams={true}
-          title="Geogr Status"
-        /> */}
       </div>
     </>
   );
-}
-
-function sensorsList(array, name) {
-  array.splice(array.indexOf(name), 1);
-  console.log(array);
-  return array;
 }
 
 export default FacetCoContractingParties;
