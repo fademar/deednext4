@@ -5,7 +5,7 @@ import {
   MultiDropdownList
 } from "@appbaseio/reactivesearch";
 
-function FacetContractingParties(props) {
+const FacetContractingParties = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
@@ -93,6 +93,6 @@ function FacetContractingParties(props) {
       </div>
     </>
   );
-}
+};
 
 export default FacetContractingParties;

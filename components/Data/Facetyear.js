@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MultiList } from "@appbaseio/reactivesearch";
 
-function FacetYear(props) {
+const FacetYear = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
@@ -25,6 +25,6 @@ function FacetYear(props) {
       URLParams={false}
     />
   );
-}
+};
 
 export default FacetYear;

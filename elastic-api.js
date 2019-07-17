@@ -9,6 +9,8 @@ const client = new Client({ node: "http://localhost:9200" });
 
 router.use(bodyParser.json());
 
+const mongoIds = [];
+
 router.get("/elasticapi/fields", (req, res) => {
   client.indices.getFieldMapping(
     { index: "deeds", fields: "*.keyword" },
@@ -27,6 +29,8 @@ router.get("/elasticapi/fields", (req, res) => {
   );
 });
 
+// RESTRUCTURING THE DATASOURCE TO ADD THE OBJECT TYPE
+
 router.get("/elasticapi/data", (req, res) => {
   const readStream = fs.createReadStream(
     "./miscellaneous/deeds_for_index.ndjson"
@@ -37,9 +41,18 @@ router.get("/elasticapi/data", (req, res) => {
   const lineReader = readLine.createInterface({
     input: readStream
   });
+  let i = 1;
   lineReader.on("line", line => {
     let newLine = line.replace("\n", "");
     let json = JSON.parse(newLine);
+    // if (json.mongo_id) {
+    //   console.log(json.mongo_id);
+    //   mongoIds.push(json.mongo_id);
+    // }
+    if (json.index) {
+      json.index = { _id: i };
+      i++;
+    }
     if (json.transactions) {
       json.transactions.forEach(transaction => {
         if (transaction.agentTransactionObjects) {
@@ -61,6 +74,32 @@ router.get("/elasticapi/data", (req, res) => {
           );
         }
       });
+    }
+    let stringLine = JSON.stringify(json) + "\n";
+    writeStream.write(stringLine);
+  });
+  lineReader.on("close", () => {
+    writeStream.end();
+  });
+  res.end();
+});
+
+router.get("/elasticapi/data2", (req, res) => {
+  console.log(mongoIds);
+  let i = 0;
+  const readStream = fs.createReadStream("./miscellaneous/logout.ndjson");
+  const writeStream = fs.createWriteStream("./miscellaneous/newlogout.ndjson", {
+    encoding: "utf8"
+  });
+  const lineReader = readLine.createInterface({
+    input: readStream
+  });
+  lineReader.on("line", line => {
+    let newLine = line.replace("\n", "");
+    let json = JSON.parse(newLine);
+    if (json.index) {
+      json.index = { _id: mongoIds[i] };
+      i++;
     }
     let stringLine = JSON.stringify(json) + "\n";
     writeStream.write(stringLine);

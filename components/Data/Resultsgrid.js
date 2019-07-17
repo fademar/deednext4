@@ -1,7 +1,13 @@
-import { Table } from "antd";
+import { Table, Divider } from "antd";
 import { ReactiveList } from "@appbaseio/reactivesearch";
+import Link from "next/link";
 
 const columns = [
+  {
+    title: "",
+    dataIndex: "_id",
+    key: "_id"
+  },
   {
     title: "Deed Code",
     dataIndex: "deedCode",
@@ -29,11 +35,11 @@ const columns = [
   }
 ];
 
-function ResultsGrid(props) {
+const ResultsGrid = props => {
   return (
     <ReactiveList
       componentId="results"
-      dataField="deedName"
+      dataField="_id"
       react={{
         and: props.sensors
       }}
@@ -55,8 +61,15 @@ function ResultsGrid(props) {
         }
         return (
           <Table
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: event => {
+                  props.onClick(record);
+                } // click row
+              };
+            }}
             style={{ background: "#ffffff" }}
-            rowKey={record => record.mongo_id}
+            rowKey={record => record._id}
             pagination={false}
             columns={columns}
             dataSource={data}
@@ -65,6 +78,6 @@ function ResultsGrid(props) {
       }}
     />
   );
-}
+};
 
 export default ResultsGrid;

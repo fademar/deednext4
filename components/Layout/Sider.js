@@ -6,15 +6,14 @@ function AppSider(props) {
   return (
     <Layout>
       <Sider
-        width={400}
+        width={300}
         style={{
           overflow: "auto",
           height: "100vh",
           position: "fixed",
           left: 0,
           top: 0,
-          paddingTop: 64,
-          background: "#fff"
+          paddingTop: 64
         }}
       >
         {props.children}

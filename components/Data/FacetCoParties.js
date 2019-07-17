@@ -7,7 +7,7 @@ import {
 
 const { Option } = Select;
 
-function FacetCoContractingParties(props) {
+const FacetCoContractingParties = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
@@ -139,6 +139,6 @@ function FacetCoContractingParties(props) {
       </div>
     </>
   );
-}
+};
 
 export default FacetCoContractingParties;

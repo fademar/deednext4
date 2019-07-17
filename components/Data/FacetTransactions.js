@@ -7,7 +7,7 @@ import {
   MultiDropdownList
 } from "@appbaseio/reactivesearch";
 
-function FacetTransactions(props) {
+const FacetTransactions = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
@@ -119,6 +119,6 @@ function FacetTransactions(props) {
       </div>
     </>
   );
-}
+};
 
 export default FacetTransactions;

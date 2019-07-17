@@ -1,6 +1,6 @@
 import { DataSearch, SelectedFilters } from "@appbaseio/reactivesearch";
 
-function SearchBox(props) {
+const SearchBox = props => {
   return (
     <>
       <DataSearch
@@ -9,7 +9,7 @@ function SearchBox(props) {
         queryFormat="and"
         autosuggest={true}
         filterLabel="search"
-        placeholder="Type any term"
+        placeholder="Search for any term..."
         URLParams={true}
         customQuery={fullQuery}
         debounce={300}
@@ -20,14 +20,14 @@ function SearchBox(props) {
       <SelectedFilters showClearAll={true} clearAllLabel="Clear filters" />
     </>
   );
-}
+};
 
-function fullQuery(value) {
+const fullQuery = value => {
   return {
     query: {
       multi_match: { query: value, zero_terms_query: "all" }
     }
   };
-}
+};
 
 export default SearchBox;
