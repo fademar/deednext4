@@ -3,6 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const { Client } = require("@elastic/elasticsearch");
 const readLine = require("readline");
+const ObjectId = require("mongodb").ObjectID;
 
 const router = express.Router();
 const client = new Client({ node: "http://localhost:9200" });
@@ -41,17 +42,37 @@ router.get("/elasticapi/data", (req, res) => {
   const lineReader = readLine.createInterface({
     input: readStream
   });
-  let i = 1;
+  let i = 840;
   lineReader.on("line", line => {
     let newLine = line.replace("\n", "");
     let json = JSON.parse(newLine);
-    // if (json.mongo_id) {
-    //   console.log(json.mongo_id);
-    //   mongoIds.push(json.mongo_id);
-    // }
+    if (json.mongo_id) {
+      json["createdTime"] = new ObjectId(json.mongo_id).getTimestamp();
+    }
+    if (json.agentSex) {
+      json.agent["sex"] = json.agentSex;
+    }
+    if (json.counterAgentSex) {
+      json.counterAgent["sex"] = json.counterAgentSex;
+    }
+    if (json.coAgents) {
+      json.coAgents.forEach(coAgent => {
+        if (coAgent.coAgentSex) {
+          coAgent.coAgent["sex"] = coAgent.coAgentSex;
+        }
+      });
+    }
+    if (json.coCounterAgents) {
+      json.coCounterAgents.forEach(coCounterAgent => {
+        if (coCounterAgent.coCounterAgentSex) {
+          coCounterAgent.coCounterAgent["sex"] =
+            coCounterAgent.coCounterAgentSex;
+        }
+      });
+    }
     if (json.index) {
       json.index = { _id: i };
-      i++;
+      i--;
     }
     if (json.transactions) {
       json.transactions.forEach(transaction => {

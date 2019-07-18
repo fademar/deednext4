@@ -34,6 +34,12 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
     "properties": {
       "agent": {
         "properties": {
+          "sex": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
           "corporationName": {
             "type": "text",
             "analyzer": "ngram_russian",
@@ -163,6 +169,12 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
         "properties": {
           "coAgent": {
             "properties": {
+              "sex": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+              },
               "familyStatus": {
                 "type": "text",
                 "analyzer": "ngram_russian",
@@ -293,6 +305,12 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
         "properties": {
           "coCounterAgent": {
             "properties": {
+              "sex": {
+                "type": "text",
+                "analyzer": "ngram_russian",
+                "search_analyzer": "autocomplete_search",
+                "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+              },
               "familyStatus": {
                 "type": "text",
                 "analyzer": "ngram_russian",
@@ -460,6 +478,12 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
       "complete": { "type": "boolean" },
       "counterAgent": {
         "properties": {
+          "sex": {
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+          },
           "corporationName": {
             "type": "text",
             "analyzer": "ngram_russian",
@@ -584,6 +608,9 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
         "analyzer": "ngram_russian",
         "search_analyzer": "autocomplete_search",
         "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } }
+      },
+      "createdTime": {
+        "type": "date"
       },
       "deedCode": {
         "type": "text",
