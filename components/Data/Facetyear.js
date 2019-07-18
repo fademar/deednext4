@@ -7,23 +7,25 @@ const FacetYear = props => {
   };
 
   return (
-    <MultiList
-      style={{ padding: "10px" }}
-      componentId="yearSensor"
-      dataField="deedDate.year"
-      size={20}
-      sortBy="desc"
-      queryFormat="or"
-      showCheckbox
-      showSearch={false}
-      react={{
-        and: newArray(props.sensors, props.sensors.indexOf("yearSensor"))
-      }}
-      showFilter
-      showCount={true}
-      filterLabel="Year"
-      URLParams={false}
-    />
+    <>
+      <MultiList
+        style={{ padding: "10px" }}
+        componentId="yearSensor"
+        dataField="deedDate.year"
+        size={20}
+        sortBy="desc"
+        queryFormat="or"
+        showCheckbox
+        showSearch={false}
+        react={{
+          and: newArray(props.sensors, props.sensors.indexOf("yearSensor"))
+        }}
+        showFilter
+        showCount={true}
+        filterLabel="Year"
+        URLParams={false}
+      />
+    </>
   );
 };
 

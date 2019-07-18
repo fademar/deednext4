@@ -32,7 +32,7 @@ const FacetCoContractingParties = props => {
           showFilter
           showCount={true}
           filterLabel={"co-Agent Sex"}
-          URLParams={true}
+          URLParams={false}
           title="Sex"
         />
       </div>
@@ -55,7 +55,7 @@ const FacetCoContractingParties = props => {
           showFilter
           showCount={true}
           filterLabel="co-CounterAgent Sex"
-          URLParams={true}
+          URLParams={false}
           title="Sex"
         />
       </div>
@@ -94,7 +94,7 @@ const FacetCoContractingParties = props => {
           showFilter
           showCount={true}
           filterLabel="collective Co-Agents Relation to Agent"
-          URLParams={true}
+          URLParams={false}
           title="Relation to Agent"
         />
       </div>
@@ -133,7 +133,7 @@ const FacetCoContractingParties = props => {
           showFilter
           showCount={true}
           filterLabel="collective Co-Counter Agents Relation to CounterAgent"
-          URLParams={true}
+          URLParams={false}
           title="Relation to CounterAgent"
         />
       </div>

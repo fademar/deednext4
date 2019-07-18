@@ -1,131 +1,10 @@
+import * as _ from "lodash";
 import { Descriptions } from "antd";
 import { Divider } from "antd";
 import { Typography } from "antd";
+import Person from "./Person";
 
 const { Text } = Typography;
-
-const Data = ({ data }) => {
-  const items = Object.entries(data);
-  const elements = [];
-  for (let [key, value] of items) {
-    typeof value !== "object"
-      ? elements.push(
-          <>
-            <Text type="secondary" key={key}>
-              {key}:
-            </Text>{" "}
-            {value}
-            <br />{" "}
-          </>
-        )
-      : console.log(value);
-  }
-  return <div>{elements}</div>;
-};
-
-const CoContractingParties = ({ data }) => {
-  const elements = [];
-  if (data.length > 0) {
-    data.map(item => {});
-  }
-  return <div />;
-};
-
-const Person = ({ data, type }) => {
-  const sex = type + "Sex";
-  switch (data[sex]) {
-    case "male":
-      return (
-        <div>
-          <Text type="secondary">Sex:</Text> {data[sex]}
-          <br />
-          <Text type="secondary">First Name:</Text> {data[type].firstName}
-          <br />
-          <Text type="secondary">Patronyme:</Text> {data[type].patronyme}
-          <br />
-          <Text type="secondary">Last Name:</Text> {data[type].lastName}
-          <br />
-          <Text type="secondary">Geogr Status:</Text> {data[type].geogrStatus}
-          <br />
-          <Text type="secondary">Social Status:</Text> {data[type].socialStatus}
-          <br />
-          <Text type="secondary">Related To:</Text> {data[type].relatedTo}
-        </div>
-      );
-    case "female":
-      return (
-        <div>
-          <Text type="secondary">Sex:</Text> {data[sex]}
-          <br />
-          <Text type="secondary">First Name:</Text> {data[type].firstName}
-          <br />
-          <Text type="secondary">Patronyme:</Text> {data[type].patronyme}
-          <br />
-          <Text type="secondary">Family Status:</Text> {data[type].familyStatus}
-          <br />
-          <Text type="secondary">Related To:</Text> {data[type].relatedTo}
-          <br />
-          <Text underline type="secondary">
-            Referent Male:
-          </Text>{" "}
-          <Text type="secondary">Relationship to Agent:</Text>{" "}
-          {data[type].referentMale.relationshipToAgent}
-          {" | "}
-          <Text type="secondary">First Name:</Text>{" "}
-          {data[type].referentMale.firstName}
-          {" | "}
-          <Text type="secondary">Patronyme:</Text>{" "}
-          {data[type].referentMale.patronyme}
-          {" | "}
-          <Text type="secondary">Last Name:</Text>{" "}
-          {data[type].referentMale.lastName}
-          {" | "}
-          <Text type="secondary">Geogr Status:</Text>{" "}
-          {data[type].referentMale.geogrStatus}
-          {" | "}
-          <Text type="secondary">Social Status:</Text>{" "}
-          {data[type].referentMale.socialStatus}
-          {" | "}
-          <Text type="secondary">Related To:</Text>{" "}
-          {data[type].referentMale.relatedTo}{" "}
-        </div>
-      );
-    case "bobody-corporatey":
-      return (
-        <div>
-          <Text type="secondary">Sex:</Text> {data[sex]}
-          <br />
-          <Text type="secondary">Corporation Name:</Text>{" "}
-          {data[type].corporationName}
-          <br />
-          <Text type="secondary">Number of Participants:</Text>{" "}
-          {data[type].nbParticipants}
-          <br />
-          <Text type="secondary">Geogr Status:</Text> {data[type].geogrStatus}
-          <br />
-          <Text type="secondary">Social Status:</Text> {data[type].socialStatus}
-          <br />
-          <Text type="secondary">Names:</Text> {data[type].names}
-        </div>
-      );
-    default:
-      return (
-        <div>
-          <Text type="secondary">First Name:</Text> {data[type].firstName}
-          <br />
-          <Text type="secondary">Patronyme:</Text> {data[type].patronyme}
-          <br />
-          <Text type="secondary">Last Name:</Text> {data[type].lastName}
-          <br />
-          <Text type="secondary">Geogr Status:</Text> {data[type].geogrStatus}
-          <br />
-          <Text type="secondary">Social Status:</Text> {data[type].socialStatus}
-          <br />
-          <Text type="secondary">Related To:</Text> {data[type].relatedTo}
-        </div>
-      );
-  }
-};
 
 const Deed = props => {
   const date = new Date(props.content.createdTime);
@@ -179,12 +58,40 @@ const Deed = props => {
         </Descriptions.Item>
         <Descriptions.Item label="" span={4} />
         <Descriptions.Item label="Agent" span={2}>
-          <Person data={props.content} type={"agent"} />
-          {/* <Data data={props.content.agent} /> */}
+          <Person data={props.content.agent} />
         </Descriptions.Item>
         <Descriptions.Item label="Counter Agent" span={2}>
-          <Person data={props.content} type={"counterAgent"} />
+          <Person data={props.content.counterAgent} />
         </Descriptions.Item>
+        {_.isEmpty(props.content.coAgents[0]) ? (
+          <></>
+        ) : (
+          <Descriptions.Item label="co-Agents" span={2}>
+            {props.content.coAgents.map((item, index) => (
+              <>
+                <div style={{ paddingBottom: "5px" }}>
+                  <Person key={"coAgent" + index} data={item.coAgent} />
+                </div>
+              </>
+            ))}
+          </Descriptions.Item>
+        )}
+        {_.isEmpty(props.content.coCounterAgents[0]) ? (
+          <></>
+        ) : (
+          <Descriptions.Item label="co-Counter Agents" span={2}>
+            {props.content.coCounterAgents.map((item, index) => (
+              <>
+                <div style={{ paddingBottom: "5px" }}>
+                  <Person
+                    key={"coCounterAgent" + index}
+                    data={item.coCounterAgent}
+                  />
+                </div>
+              </>
+            ))}
+          </Descriptions.Item>
+        )}
       </Descriptions>
     </div>
   );
