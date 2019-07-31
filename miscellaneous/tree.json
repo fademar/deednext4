@@ -1,68 +1,15 @@
-curl -X DELETE "localhost:9200/deeds?pretty"
-curl -X GET "localhost:9200/_cat/indices?v"
-
-
-curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
-{
-  "settings": {
-    "analysis": {
-      "analyzer": {
-        "ngram_russian": {
-          "tokenizer": "autocomplete",
-          "filter": ["lowercase"]
-        },
-        "autocomplete_search": {
-          "tokenizer": "lowercase"
-        }
-      },
-      "tokenizer": {
-        "autocomplete": {
-          "type": "edge_ngram",
-          "min_gram": 3,
-          "max_gram": 10,
-          "token_chars": ["letter", "digit"]
-        }
-      }
-    }
-  },
-  "mappings": {
-    "properties": {
-      "agent": {
-        "properties": {
-          "corporationName": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          },
-          "familyStatus": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          },
-          "firstName": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          },
-          "geogrStatus": {
+[{
+    "title":"agent",
+    "key":"agent",
+    "children": [
+        {"title":"corporationName",
+        "key":"agent.corporationName"},
+        {"title":"familyStatus",
+        "key":"agent.familyStatus"},
+        {"title":"firstName",
+        "key":"agent.firstName"}
+    ]
+},        "geogrStatus": {
             "type": "text",
             "analyzer": "ngram_russian",
             "search_analyzer": "autocomplete_search",
@@ -2119,12 +2066,3 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
         }
       }
     }
-  }
-}
-'
-curl -H "Content-Type: application/x-ndjson" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout3.ndjson"
-curl "localhost:9200/_cat/indices?v"
-
-купчая
-
-Филимонов

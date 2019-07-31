@@ -1,8 +1,3 @@
-curl -X DELETE "localhost:9200/deeds?pretty"
-curl -X GET "localhost:9200/_cat/indices?v"
-
-
-curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
 {
   "settings": {
     "analysis": {
@@ -937,30 +932,6 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
         "properties": {
           "fee": {
             "properties": {
-              "amount": {
-                "properties": {
-                  "altyny": {
-                    "type": "float"
-                  },
-                  "coins": {
-                    "type": "text",
-                    "analyzer": "ngram_russian",
-                    "search_analyzer": "autocomplete_search",
-                    "fields": {
-                      "keyword": {
-                        "type": "keyword",
-                        "ignore_above": 256
-                      }
-                    }
-                  },
-                  "dengi": {
-                    "type": "float"
-                  },
-                  "rubli": {
-                    "type": "float"
-                  }
-                }
-              },
               "collected": {
                 "type": "boolean"
               }
@@ -2121,10 +2092,3 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
     }
   }
 }
-'
-curl -H "Content-Type: application/x-ndjson" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout3.ndjson"
-curl "localhost:9200/_cat/indices?v"
-
-купчая
-
-Филимонов

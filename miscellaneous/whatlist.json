@@ -1,0 +1,139 @@
+[
+  {
+    "chattels": {
+      "type": "",
+      "origin": "",
+      "description": "",
+      "price": [
+        {
+          "coins": "silver",
+          "rubli": 0,
+          "altyny": 0,
+          "dengi": 0
+        }
+      ]
+    }
+  },
+  {
+    "debt": {
+      "amount": [
+        {
+          "coins": "unspecified",
+          "rubli": 0,
+          "altyny": 0,
+          "dengi": 0
+        }
+      ],
+      "debtorName": "",
+      "debtDate": ""
+    }
+  },
+  {
+    "dependent": {
+      "familyStatus": "",
+      "firstName": "",
+      "patronyme": "",
+      "lastName": "",
+      "relationToAgent": ""
+    }
+  },
+  {
+    "forfeit": [
+      {
+        "coins": "unspecified",
+        "rubli": 0,
+        "altyny": 0,
+        "dengi": 0
+      }
+    ]
+  },
+  {
+    "fugitiveSouls": {
+      "juridicalStatus": "",
+      "numberOfSouls": {
+        "male": "",
+        "female": "",
+        "operator": "",
+        "households": ""
+      },
+      "names": "",
+      "yearsOfRent": ""
+    }
+  },
+  {
+    "goods": {
+      "type": "",
+      "description": "",
+      "price": [
+        {
+          "coins": "unspecified",
+          "rubli": 0,
+          "altyny": 0,
+          "dengi": 0
+        }
+      ]
+    }
+  },
+  {
+    "immovableProperty": {
+      "type": "",
+      "share": "",
+      "origin": "",
+      "localisation": "",
+      "neighbours": "",
+      "surface": {
+        "chetiVpole": "",
+        "sazheni": {
+          "x": "",
+          "y": ""
+        }
+      },
+      "population": {
+        "male": "",
+        "female": "",
+        "operator": "",
+        "households": ""
+      },
+      "buildings": "",
+      "appurtenances": ""
+    }
+  },
+  {
+    "money": [
+      {
+        "coins": "unspecified",
+        "rubli": 0,
+        "altyny": 0,
+        "dengi": 0
+      }
+    ]
+  },
+  {
+    "parent": {
+      "coAgentNumber": "coAgent1"
+    }
+  },
+  {
+    "responsabilities": {
+      "description": ""
+    }
+  },
+  {
+    "shareFromEstate": {
+      "share": "",
+      "description": ""
+    }
+  },
+  {
+    "souls": {
+      "juridicalStatus": "",
+      "numberOfSouls": {
+        "male": "",
+        "female": "",
+        "operator": "",
+        "households": ""
+      },
+      "names": ""
+    }
+  }
+]

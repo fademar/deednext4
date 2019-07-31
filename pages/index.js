@@ -17,10 +17,21 @@ const { TabPane } = Tabs;
 class Index extends React.Component {
   static async getInitialProps({ req }) {
     const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
-    const res = await fetch(`${baseURL}/elasticapi/fields`);
+    const res1 = await fetch(`${baseURL}/elasticapi/textfields`);
+    const res2 = await fetch(`${baseURL}/elasticapi/numfields`);
+    const res3 = await fetch(`${baseURL}/elasticapi/boolfields`);
+    const map = await fetch(`${baseURL}/elasticapi/mapping`);
+
+    const textFields = await res1.json();
+    const numberFields = await res2.json();
+    const booleanFields = await res3.json();
+    const mapping = await map.json();
 
     return {
-      fields: await res.json(),
+      textFields: textFields,
+      numberFields: numberFields,
+      booleanFields: booleanFields,
+      mapping: mapping,
       sensors: [
         "searchSensor",
         "yearSensor",
@@ -102,7 +113,13 @@ class Index extends React.Component {
       <Container>
         <AppHeader />
         <AppSider>
-          <FacetBox sensors={this.props.sensors} />
+          <FacetBox
+            sensors={this.props.sensors}
+            textFields={this.props.textFields}
+            numberFields={this.props.numberFields}
+            booleanFields={this.props.booleanFields}
+            mapping={this.props.mapping}
+          />
         </AppSider>
 
         <AppContent style={{ marginTop: "100px" }}>
@@ -115,7 +132,9 @@ class Index extends React.Component {
           >
             <TabPane tab={"RESULTS"} key={0} closable={false}>
               <SearchBox
-                fields={this.props.fields}
+                textFields={this.props.textFields}
+                numberFields={this.props.numberFields}
+                booleanFields={this.props.booleanFields}
                 sensors={this.props.sensors}
               />
               <ResultsGrid

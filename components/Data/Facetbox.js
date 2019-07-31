@@ -1,37 +1,173 @@
-import { Collapse, Icon, Divider } from "antd";
+import { Tree, Input } from "antd";
+import * as _ from "lodash";
+import { elementType } from "prop-types";
 
-import FacetYear from "./Facetyear";
-import FacetContractingParties from "./FacetParties";
-import FacetCoContractingParties from "./FacetCoParties";
-import FacetTransactions from "./FacetTransactions";
+const { TreeNode } = Tree;
+const { Search } = Input;
 
-const { Panel } = Collapse;
+const x = 3;
+const y = 2;
+const z = 1;
+const gData = [];
+const tree = [];
+const rawTree = [];
 
-const FacetBox = props => {
-  return (
-    <>
-      <Divider orientation="left">Search by...</Divider>
-      <Collapse bordered={false} style={{ background: "#f0f2f5" }}>
-        <Panel header="Year" key="YearPanel">
-          <FacetYear sensors={props.sensors} />
-        </Panel>
-        <Panel header="Contracting Parties" key="ContractingPartiesPanel">
-          <FacetContractingParties sensors={props.sensors} party={"agent"} />
-          <FacetContractingParties
-            sensors={props.sensors}
-            party={"counterAgent"}
-          />
-        </Panel>
-        <Panel header="Co-Contracting Parties" key="CoContractingPartiesPanel">
-          <FacetCoContractingParties sensors={props.sensors} />
-        </Panel>
-        <Panel header="Transactions" key="TransactionsPanel">
-          <FacetTransactions sensors={props.sensors} party={"agent"} />
-          <FacetTransactions sensors={props.sensors} party={"counterAgent"} />
-        </Panel>
-      </Collapse>
-    </>
-  );
+// const generateData = (_level, _preKey, _tns) => {
+//   const preKey = _preKey || "0";
+//   const tns = _tns || gData;
+
+//   const children = [];
+//   for (let i = 0; i < x; i++) {
+//     const key = `${preKey}-${i}`;
+//     tns.push({ title: key, key });
+//     if (i < y) {
+//       children.push(key);
+//     }
+//   }
+//   if (_level < 0) {
+//     return tns;
+//   }
+//   const level = _level - 1;
+//   children.forEach((key, index) => {
+//     tns[index].children = [];
+//     return generateData(level, key, tns[index].children);
+//   });
+//   console.log("gdata : ", gData);
+// };
+// generateData(z);
+
+const generateData = data => {
+  _.forEach(data, (value, key) => {
+    if (data[key].hasOwnProperty("properties")) {
+      const children = [];
+      _.forEach(data[key]["properties"], (childValue, childKey) => {
+        children.push({ title: childKey, key: key + "." + childKey });
+      });
+      gData.push({ title: key, key: key, children: children });
+      console.log(children);
+    } else {
+      gData.push({ title: key, key: key });
+    }
+  });
 };
+
+const dataList = [];
+const generateList = data => {
+  for (let i = 0; i < data.length; i++) {
+    const node = data[i];
+    const { key } = node;
+    dataList.push({ key, title: key });
+    if (node.children) {
+      generateList(node.children);
+    }
+  }
+};
+generateList(gData);
+
+const getParentKey = (key, tree) => {
+  let parentKey;
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+    if (node.children) {
+      if (node.children.some(item => item.key === key)) {
+        parentKey = node.key;
+      } else if (getParentKey(key, node.children)) {
+        parentKey = getParentKey(key, node.children);
+      }
+    }
+  }
+  return parentKey;
+};
+
+class FacetBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expandedKeys: [],
+      searchValue: "",
+      autoExpandParent: true,
+      checkedKeys: []
+    };
+    this.onExpand = this.onExpand.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onCheck = this.onCheck.bind(this);
+    generateData(this.props.mapping);
+  }
+
+  onExpand = expandedKeys => {
+    this.setState({
+      expandedKeys,
+      autoExpandParent: false
+    });
+  };
+
+  onChange = e => {
+    const { value } = e.target;
+    const expandedKeys = dataList
+      .map(item => {
+        if (item.title.indexOf(value) > -1) {
+          return getParentKey(item.key, gData);
+        }
+        return null;
+      })
+      .filter((item, i, self) => item && self.indexOf(item) === i);
+    this.setState({
+      expandedKeys,
+      searchValue: value,
+      autoExpandParent: true
+    });
+  };
+
+  onCheck = checkedKeys => {
+    console.log("checkedkeys", checkedKeys);
+    this.setState({ checkedKeys });
+  };
+
+  render() {
+    const { searchValue, expandedKeys, autoExpandParent } = this.state;
+    const loop = data =>
+      data.map(item => {
+        const index = item.title.indexOf(searchValue);
+        const beforeStr = item.title.substr(0, index);
+        const afterStr = item.title.substr(index + searchValue.length);
+        const title =
+          index > -1 ? (
+            <span>
+              {beforeStr}
+              <span style={{ color: "#f50" }}>{searchValue}</span>
+              {afterStr}
+            </span>
+          ) : (
+            <span>{item.title}</span>
+          );
+        if (item.children) {
+          return (
+            <TreeNode key={item.key} title={title}>
+              {loop(item.children)}
+            </TreeNode>
+          );
+        }
+        return <TreeNode key={item.key} title={title} />;
+      });
+    return (
+      <div>
+        <Search
+          style={{ margin: 8, width: "284px" }}
+          placeholder="Search a field"
+          onChange={this.onChange}
+        />
+        <Tree
+          checkable
+          onExpand={this.onExpand}
+          expandedKeys={expandedKeys}
+          autoExpandParent={autoExpandParent}
+          onCheck={this.onCheck}
+        >
+          {loop(gData)}
+        </Tree>
+      </div>
+    );
+  }
+}
 
 export default FacetBox;

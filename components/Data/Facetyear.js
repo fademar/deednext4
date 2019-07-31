@@ -11,7 +11,7 @@ const FacetYear = props => {
       <MultiList
         style={{ padding: "10px" }}
         componentId="yearSensor"
-        dataField="deedDate.year"
+        dataField="deedDate.year.keyword"
         size={20}
         sortBy="desc"
         queryFormat="or"
