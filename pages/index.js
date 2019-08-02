@@ -7,12 +7,17 @@ import AppContent from "../components/Layout/Content";
 import AppFooter from "../components/Layout/Footer";
 import ResultsGrid from "../components/Data/Resultsgrid";
 import SearchBox from "../components/Data/Searchbox";
-import FacetBox from "../components/Data/Facetbox";
 import DeedPane from "../components/Data/Deed";
+import FacetYear from "../components/Data/Facetyear";
+import FacetParties from "../components/Data/FacetParties";
+import FacetCoParties from "../components/Data/FacetCoParties";
+import FacetTransactions from "../components/Data/FacetTransactions";
 
-import { Tabs } from "antd";
+import { Tabs, Collapse, Icon, Typography, Divider } from "antd";
 
+const { Panel } = Collapse;
 const { TabPane } = Tabs;
+const { Title } = Typography;
 
 class Index extends React.Component {
   static async getInitialProps({ req }) {
@@ -112,14 +117,29 @@ class Index extends React.Component {
     return (
       <Container>
         <AppHeader />
+
         <AppSider>
-          <FacetBox
-            sensors={this.props.sensors}
-            textFields={this.props.textFields}
-            numberFields={this.props.numberFields}
-            booleanFields={this.props.booleanFields}
-            mapping={this.props.mapping}
-          />
+          <Divider orientation="left">Search by</Divider>
+          <Collapse bordered={false}>
+            <Panel header="Year" key="year">
+              <FacetYear sensors={this.props.sensors} />
+            </Panel>
+            <Panel header="Agent" key="agent">
+              <FacetParties sensors={this.props.sensors} party="agent" />
+            </Panel>
+            <Panel header="Counter Agent" key="counterAgent">
+              <FacetParties sensors={this.props.sensors} party="counterAgent" />
+            </Panel>
+            <Panel header="Agent action" key="agent-action">
+              <FacetTransactions sensors={this.props.sensors} party="agent" />
+            </Panel>
+            <Panel header="Counter Agent action" key="counterAgent-action">
+              <FacetTransactions
+                sensors={this.props.sensors}
+                party="counterAgent"
+              />
+            </Panel>
+          </Collapse>
         </AppSider>
 
         <AppContent style={{ marginTop: "100px" }}>

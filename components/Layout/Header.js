@@ -12,7 +12,7 @@ function AppHeader() {
         marginBottom: "40px"
       }}
     >
-      <div className="logo" />
+      <div className="logo">Russian Deeds Database</div>
       <Menu theme="dark" mode="horizontal" style={{ lineHeight: "64px" }}>
         {/* <Menu.Item key="1">nav 1</Menu.Item>
         <Menu.Item key="2">nav 2</Menu.Item>
@@ -20,10 +20,8 @@ function AppHeader() {
       </Menu>
       <style jsx>{`
         .logo {
-          width: 120px;
-          height: 31px;
-          background: rgba(255, 255, 255, 0.2);
-          margin: 16px 24px 16px 0;
+          color: #ffffff;
+          font-size: 1.1em;
           float: left;
         }
       `}</style>

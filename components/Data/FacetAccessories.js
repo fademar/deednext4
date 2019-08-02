@@ -1,11 +1,10 @@
-import { Select, Divider } from "antd";
 import {
   DataSearch,
   MultiList,
   MultiDropdownList
 } from "@appbaseio/reactivesearch";
 
-const FacetContractingParties = props => {
+const FacetAccessories = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
@@ -94,4 +93,4 @@ const FacetContractingParties = props => {
   );
 };
 
-export default FacetContractingParties;
+export default FacetAccessories;

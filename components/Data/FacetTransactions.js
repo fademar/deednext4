@@ -48,8 +48,7 @@ const FacetTransactions = props => {
 
   return (
     <>
-      <div style={{ marginBottom: "10px" }}>
-        <Divider orientation="left">{props.party}</Divider>
+      <div>
         <MultiList
           style={{ padding: "10px" }}
           componentId={props.party + "ActionSensor"}

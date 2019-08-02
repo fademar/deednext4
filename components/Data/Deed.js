@@ -1,8 +1,7 @@
 import * as _ from "lodash";
-import { Descriptions } from "antd";
-import { Divider } from "antd";
-import { Typography } from "antd";
+import { Descriptions, Divider, Col, Row, Typography, Tag } from "antd";
 import Person from "./Person";
+import Transaction from "./Transaction";
 
 const { Text } = Typography;
 
@@ -11,7 +10,7 @@ const Deed = props => {
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let dt = date.getDate();
-
+  console.log(props.content);
   if (dt < 10) {
     dt = "0" + dt;
   }
@@ -36,8 +35,8 @@ const Deed = props => {
           "/" +
           year
         }
+        column={{ xxl: 4, xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}
         bordered
-        column={{ xxl: 4, xl: 4, lg: 4, md: 4, sm: 4, xs: 1 }}
         size="small"
       >
         <Descriptions.Item label="Code">
@@ -56,16 +55,13 @@ const Deed = props => {
         <Descriptions.Item label="Name" span={4}>
           {props.content.deedName}
         </Descriptions.Item>
-        <Descriptions.Item label="" span={4} />
         <Descriptions.Item label="Agent" span={2}>
           <Person data={props.content.agent} />
         </Descriptions.Item>
         <Descriptions.Item label="Counter Agent" span={2}>
           <Person data={props.content.counterAgent} />
         </Descriptions.Item>
-        {_.isEmpty(props.content.coAgents[0]) ? (
-          <></>
-        ) : (
+        {props.content.coAgents ? (
           <Descriptions.Item label="co-Agents" span={2}>
             {props.content.coAgents.map((item, index) => (
               <>
@@ -75,10 +71,10 @@ const Deed = props => {
               </>
             ))}
           </Descriptions.Item>
-        )}
-        {_.isEmpty(props.content.coCounterAgents[0]) ? (
-          <></>
         ) : (
+          <div span={4} />
+        )}
+        {props.content.coCounterAgents ? (
           <Descriptions.Item label="co-Counter Agents" span={2}>
             {props.content.coCounterAgents.map((item, index) => (
               <>
@@ -91,7 +87,101 @@ const Deed = props => {
               </>
             ))}
           </Descriptions.Item>
+        ) : (
+          <div span={4} />
         )}
+        {_.isEmpty(props.content.transactions[0]) ? (
+          <>{null}</>
+        ) : (
+          props.content.transactions.map((transaction, index) => (
+            <Descriptions.Item
+              label={"Transactions"}
+              key={"Transaction-" + index}
+              span={4}
+            >
+              <Transaction data={transaction} indexTransaction={index} />
+            </Descriptions.Item>
+          ))
+        )}
+        {_.isEmpty(props.content.whitnesses[0]) ? (
+          <div span={4} />
+        ) : (
+          <Descriptions.Item label="Whitnesses" span={4}>
+            <Row gutter={16}>
+              {props.content.whitnesses.map((item, index) => (
+                <>
+                  <Col span={12}>
+                    <Person key={"whitness" + index} data={item.whitness} />
+                  </Col>
+                </>
+              ))}{" "}
+            </Row>
+          </Descriptions.Item>
+        )}
+        {_.isEmpty(props.content.sureties[0]) ? (
+          <div span={4} />
+        ) : (
+          <Descriptions.Item label="Sureties" span={4}>
+            <Row gutter={16}>
+              {props.content.sureties.map((item, index) => (
+                <Col span={12}>
+                  <Person key={"surety" + index} data={item.surety} />
+                </Col>
+              ))}{" "}
+            </Row>
+          </Descriptions.Item>
+        )}
+        {_.isEmpty(props.content.otherParticipants[0]) ? (
+          <div span={4} />
+        ) : (
+          <Descriptions.Item label="Other Participants" span={4}>
+            <Row gutter={16}>
+              {props.content.otherParticipants.map((item, index) => (
+                <Col span={12}>
+                  <Person
+                    key={"otherParticipant" + index}
+                    data={item.otherParticipant}
+                  />
+                </Col>
+              ))}{" "}
+            </Row>
+          </Descriptions.Item>
+        )}
+        {props.content.scribe ? (
+          <Descriptions.Item label="Scribe" span={4}>
+            <Person key={"scribe"} data={props.content.scribe} />
+          </Descriptions.Item>
+        ) : (
+          <div span={4} />
+        )}
+        <Descriptions.Item label="Registration" span={4}>
+          <Row gutter={16}>
+            <Col span={12}>{props.content.registrationDate}</Col>
+            {props.content.registrator ? (
+              <Col span={12}>
+                <Person
+                  key={"otherParticipant"}
+                  data={props.content.registrator}
+                />
+              </Col>
+            ) : (
+              <div span={4} />
+            )}
+          </Row>
+        </Descriptions.Item>
+        <Descriptions.Item label="Verbatim citations" span={4}>
+          {props.content.verbatimCitations}
+        </Descriptions.Item>
+        <Descriptions.Item label="Researchers Notes" span={4}>
+          {props.content.researcherNotes}
+        </Descriptions.Item>
+        <Descriptions.Item label="Complete" span={4}>
+          {props.content.complete === false ? (
+            <Tag color="red">No</Tag>
+          ) : (
+            <Tag color="green">Yes</Tag>
+          )}
+        </Descriptions.Item>
       </Descriptions>
     </div>
   );

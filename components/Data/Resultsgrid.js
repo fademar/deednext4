@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Table, Divider } from "antd";
 import { ReactiveList } from "@appbaseio/reactivesearch";
 import Link from "next/link";
@@ -7,8 +8,7 @@ const columns = [
     title: "",
     dataIndex: "_id",
     key: "_id",
-    defaultSortOrder: "descend",
-    sorter: (a, b) => a._id - b._id
+    defaultSortOrder: "descend"
   },
   {
     title: "Deed Code",
@@ -23,7 +23,14 @@ const columns = [
   {
     title: "Deed Date",
     dataIndex: "deedDate",
-    key: "deedDate"
+    key: "deedDate",
+    render: (text, record) => (
+      <span>
+        {record.deedDate.day === null ? "" : record.deedDate.day}{" "}
+        {record.deedDate.month === null ? "" : record.deedDate.month}{" "}
+        {record.deedDate.year === null ? "" : record.deedDate.year}
+      </span>
+    )
   },
   {
     title: "Deed Name",

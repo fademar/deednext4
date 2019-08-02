@@ -484,4 +484,36 @@ router.get("/elasticapi/coins-zero", (req, res) => {
   res.end();
 });
 
+router.get("/elasticapi/dates", (req, res) => {
+  const readStream = fs.createReadStream("./miscellaneous/logout3.ndjson");
+  const writeStream = fs.createWriteStream("./miscellaneous/logout4.ndjson", {
+    encoding: "utf8"
+  });
+  const lineReader = readLine.createInterface({
+    input: readStream
+  });
+
+  lineReader.on("line", line => {
+    let newLine = line.replace("\n", "");
+    let json = JSON.parse(newLine);
+    if (json.deedDate) {
+      json.deedDate.day === ""
+        ? (json.deedDate.day = null)
+        : (json.deedDate.day = parseInt(json.deedDate.day, 10));
+      json.deedDate.month === ""
+        ? (json.deedDate.month = null)
+        : (json.deedDate.month = parseInt(json.deedDate.month, 10));
+      json.deedDate.year === ""
+        ? (json.deedDate.year = null)
+        : (json.deedDate.year = parseInt(json.deedDate.year, 10));
+    }
+    let stringLine = JSON.stringify(json) + "\n";
+    writeStream.write(stringLine);
+  });
+  lineReader.on("close", () => {
+    writeStream.end();
+  });
+  res.end();
+});
+
 module.exports = router;

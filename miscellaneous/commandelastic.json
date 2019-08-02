@@ -866,37 +866,13 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
       "deedDate": {
         "properties": {
           "day": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
+            "type": "long"
           },
           "month": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
+            "type": "long"
           },
           "year": {
-            "type": "text",
-            "analyzer": "ngram_russian",
-            "search_analyzer": "autocomplete_search",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
+            "type": "long"
           }
         }
       },
@@ -2122,7 +2098,7 @@ curl -X PUT "localhost:9200/deeds" -H 'Content-Type: application/json' -d'
   }
 }
 '
-curl -H "Content-Type: application/x-ndjson" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout3.ndjson"
+curl -H "Content-Type: application/x-ndjson" -XPOST "localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout4.ndjson"
 curl "localhost:9200/_cat/indices?v"
 
 купчая
