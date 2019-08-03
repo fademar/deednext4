@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const next = require("next");
 const elasticAPI = require("./elastic-api");
+const cors = require("cors");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -12,6 +13,7 @@ app
   .then(() => {
     const server = express();
 
+    server.use(cors());
     server.use(elasticAPI);
 
     // handling everything else with Next.js
