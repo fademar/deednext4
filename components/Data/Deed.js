@@ -169,6 +169,106 @@ const Deed = props => {
             )}
           </Row>
         </Descriptions.Item>
+        <Descriptions.Item label="Fees" span={4}>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Text type="secondary" key="fee-tax">
+                Tax :
+              </Text>{" "}
+              {props.content.fees.tax.amount.map((a, index) => (
+                <>
+                  <Text
+                    type="secondary"
+                    key={"tax-" + a + "-" + index + ".coins"}
+                  >
+                    Coins:
+                  </Text>{" "}
+                  {a.coins} / {a.rubli}{" "}
+                  <Text
+                    type="secondary"
+                    key={"tax-" + a + "-" + index + ".rubli"}
+                  >
+                    rubli
+                  </Text>{" "}
+                  {a.altyny}{" "}
+                  <Text
+                    type="secondary"
+                    key={"tax-" + a + "-" + index + ".altyny"}
+                  >
+                    altyny
+                  </Text>{" "}
+                  {a.dengi}{" "}
+                  <Text
+                    type="secondary"
+                    key={"tax-" + a + "-" + index + ".dengi"}
+                  >
+                    dengi
+                  </Text>{" "}
+                  <br />
+                  <Text
+                    type="secondary"
+                    key={"tax-" + a + "-" + index + ".collected"}
+                  >
+                    Collected:
+                  </Text>{" "}
+                  {props.content.fees.tax.collected === false ? (
+                    <Tag color="red">No</Tag>
+                  ) : (
+                    <Tag color="green">Yes</Tag>
+                  )}
+                </>
+              ))}
+            </Col>
+            <Col span={12}>
+              <Text type="secondary" key="fee-fee">
+                Tax :
+              </Text>{" "}
+              {props.content.fees.fee.amount.map((a, index) => (
+                <>
+                  <Text
+                    type="secondary"
+                    key={"fee-" + a + "-" + index + ".coins"}
+                  >
+                    Coins:
+                  </Text>{" "}
+                  {a.coins} / {a.rubli}{" "}
+                  <Text
+                    type="secondary"
+                    key={"fee-" + a + "-" + index + ".rubli"}
+                  >
+                    rubli
+                  </Text>{" "}
+                  {a.altyny}{" "}
+                  <Text
+                    type="secondary"
+                    key={"fee-" + a + "-" + index + ".altyny"}
+                  >
+                    altyny
+                  </Text>{" "}
+                  {a.dengi}{" "}
+                  <Text
+                    type="secondary"
+                    key={"fee-" + a + "-" + index + ".dengi"}
+                  >
+                    dengi
+                  </Text>{" "}
+                  <br />
+                  <Text
+                    type="secondary"
+                    key={"fee-" + a + "-" + index + ".collected"}
+                  >
+                    Collected:
+                  </Text>{" "}
+                  {props.content.fees.fee.collected === false ? (
+                    <Tag color="red">No</Tag>
+                  ) : (
+                    <Tag color="green">Yes</Tag>
+                  )}
+                </>
+              ))}
+            </Col>
+          </Row>
+        </Descriptions.Item>
         <Descriptions.Item label="Verbatim citations" span={4}>
           {props.content.verbatimCitations}
         </Descriptions.Item>
