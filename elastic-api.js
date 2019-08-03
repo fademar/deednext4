@@ -8,11 +8,13 @@ const ObjectId = require("mongodb").ObjectID;
 const router = express.Router();
 const client = new Client({ node: "http://localhost:9200" });
 
+const cors = require("cors");
+
 router.use(bodyParser.json());
 
 const mongoIds = [];
 
-router.get("/elasticapi/textfields", (req, res) => {
+router.get("/elasticapi/textfields", cors(), (req, res) => {
   client.indices.getFieldMapping(
     { index: "deeds", fields: "*.keyword" },
     (error, response) => {
@@ -31,7 +33,7 @@ router.get("/elasticapi/textfields", (req, res) => {
   );
 });
 
-router.get("/elasticapi/mapping", (req, res) => {
+router.get("/elasticapi/mapping", cors(), (req, res) => {
   client.indices.getMapping({ index: "deeds" }, (error, response) => {
     if (error) {
       console.log(error);
@@ -41,7 +43,7 @@ router.get("/elasticapi/mapping", (req, res) => {
   });
 });
 
-router.get("/elasticapi/numfields", (req, res) => {
+router.get("/elasticapi/numfields", cors(), (req, res) => {
   client.indices.getFieldMapping(
     { index: "deeds", fields: "*" },
     (error, response) => {
@@ -66,7 +68,7 @@ router.get("/elasticapi/numfields", (req, res) => {
   );
 });
 
-router.get("/elasticapi/boolfields", (req, res) => {
+router.get("/elasticapi/boolfields", cors(), (req, res) => {
   client.indices.getFieldMapping(
     { index: "deeds", fields: "*" },
     (error, response) => {
@@ -90,7 +92,7 @@ router.get("/elasticapi/boolfields", (req, res) => {
 
 // RESTRUCTURING THE DATASOURCE TO ADD THE OBJECT TYPE
 
-router.get("/elasticapi/data", (req, res) => {
+router.get("/elasticapi/data", cors(), (req, res) => {
   const readStream = fs.createReadStream(
     "./miscellaneous/deeds_for_index.ndjson"
   );
@@ -163,7 +165,7 @@ router.get("/elasticapi/data", (req, res) => {
   res.end();
 });
 
-router.get("/elasticapi/coins", (req, res) => {
+router.get("/elasticapi/coins", cors(), (req, res) => {
   const readStream = fs.createReadStream("./miscellaneous/logout.ndjson");
   const writeStream = fs.createWriteStream("./miscellaneous/logout2.ndjson", {
     encoding: "utf8"
@@ -421,7 +423,7 @@ router.get("/elasticapi/coins", (req, res) => {
   res.end();
 });
 
-router.get("/elasticapi/coins-zero", (req, res) => {
+router.get("/elasticapi/coins-zero", cors(), (req, res) => {
   const readStream = fs.createReadStream("./miscellaneous/logout2.ndjson");
   const writeStream = fs.createWriteStream("./miscellaneous/logout3.ndjson", {
     encoding: "utf8"
@@ -484,7 +486,7 @@ router.get("/elasticapi/coins-zero", (req, res) => {
   res.end();
 });
 
-router.get("/elasticapi/dates", (req, res) => {
+router.get("/elasticapi/dates", cors(), (req, res) => {
   const readStream = fs.createReadStream("./miscellaneous/logout3.ndjson");
   const writeStream = fs.createWriteStream("./miscellaneous/logout4.ndjson", {
     encoding: "utf8"
