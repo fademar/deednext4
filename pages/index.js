@@ -21,6 +21,7 @@ const { Title } = Typography;
 
 class Index extends React.Component {
   static async getInitialProps({ req }) {
+    console.log(req);
     const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
     const res1 = await fetch(`${baseURL}/elasticapi/textfields`);
     const res2 = await fetch(`${baseURL}/elasticapi/numfields`);

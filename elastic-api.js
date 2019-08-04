@@ -4,15 +4,14 @@ const fs = require("fs");
 const { Client } = require("@elastic/elasticsearch");
 const readLine = require("readline");
 const ObjectId = require("mongodb").ObjectID;
+const cors = require("cors");
 
 const router = express.Router();
 const client = new Client({ node: "http://localhost:9200" });
 
-const cors = require("cors");
-
 router.use(bodyParser.json());
 
-const mongoIds = [];
+router.options("*", cors());
 
 router.get("/elasticapi/textfields", cors(), (req, res) => {
   client.indices.getFieldMapping(
