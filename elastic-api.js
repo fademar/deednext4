@@ -6,6 +6,9 @@ const readLine = require("readline");
 const ObjectId = require("mongodb").ObjectID;
 const cors = require("cors");
 
+$SCALINGO_ELASTICSEARCH_URL =
+  "http://deeds-cercec-5545:XonxY7GtyZg-I2ykBCtc@deeds-cercec-5545.elasticsearch.dbs.scalingo.com:30645";
+
 const router = express.Router();
 const client = new Client({ node: $SCALINGO_ELASTICSEARCH_URL });
 
