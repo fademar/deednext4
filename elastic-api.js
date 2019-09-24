@@ -7,7 +7,7 @@ const ObjectId = require("mongodb").ObjectID;
 const cors = require("cors");
 
 const router = express.Router();
-const client = new Client({ node: "http://localhost:9200" });
+const client = new Client({ node: $SCALINGO_ELASTICSEARCH_URL });
 
 router.use(bodyParser.json());
 
