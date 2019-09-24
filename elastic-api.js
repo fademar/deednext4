@@ -6,11 +6,18 @@ const readLine = require("readline");
 const ObjectId = require("mongodb").ObjectID;
 const cors = require("cors");
 
-$SCALINGO_ELASTICSEARCH_URL =
-  "http://deeds-cercec-5545:XonxY7GtyZg-I2ykBCtc@deeds-cercec-5545.elasticsearch.dbs.scalingo.com:30645";
-
 const router = express.Router();
-const client = new Client({ node: $SCALINGO_ELASTICSEARCH_URL });
+
+const client = new Client({
+  cloud: {
+    id:
+      "deeds:ZXVyb3BlLXdlc3QxLmdjcC5jbG91ZC5lcy5pbyQ2OWYzMzlhYjI1MTA0YzI0ODI4OTNhY2Y3MjM5Y2QwYyRlYzMwYmUyMjNkOGE0Y2EwOWM5OTJjY2Q1NmRhMjliMQ=="
+  },
+  auth: {
+    username: "elastic",
+    password: "CpcAVZRSyKPerUZ04fLBRdY5"
+  }
+});
 
 router.use(bodyParser.json());
 
@@ -95,16 +102,14 @@ router.get("/elasticapi/boolfields", cors(), (req, res) => {
 // RESTRUCTURING THE DATASOURCE TO ADD THE OBJECT TYPE
 
 router.get("/elasticapi/data", cors(), (req, res) => {
-  const readStream = fs.createReadStream(
-    "./miscellaneous/deeds_for_index.ndjson"
-  );
-  const writeStream = fs.createWriteStream("./miscellaneous/logout.ndjson", {
+  const readStream = fs.createReadStream("./miscellaneous/login.ndjson");
+  const writeStream = fs.createWriteStream("./miscellaneous/logout1.ndjson", {
     encoding: "utf8"
   });
   const lineReader = readLine.createInterface({
     input: readStream
   });
-  let i = 840;
+  let i = 849;
   lineReader.on("line", line => {
     let newLine = line.replace("\n", "");
     let json = JSON.parse(newLine);
@@ -168,7 +173,7 @@ router.get("/elasticapi/data", cors(), (req, res) => {
 });
 
 router.get("/elasticapi/coins", cors(), (req, res) => {
-  const readStream = fs.createReadStream("./miscellaneous/logout.ndjson");
+  const readStream = fs.createReadStream("./miscellaneous/logout1.ndjson");
   const writeStream = fs.createWriteStream("./miscellaneous/logout2.ndjson", {
     encoding: "utf8"
   });
