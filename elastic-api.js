@@ -9,11 +9,11 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "http://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210",
-  auth: {
-    username: "deeds-cercec-1423",
-    password: "DcI3Hy9rejHq-ZZNYz93"
-  }
+  node: "http://localhost:9200"
+  // auth: {
+  //   username: "deeds-cercec-1423",
+  //   password: "DcI3Hy9rejHq-ZZNYz93"
+  // }
 });
 
 router.use(bodyParser.json());
@@ -28,7 +28,7 @@ router.get("/elasticapi/textfields", cors(), (req, res) => {
         console.log(error);
       } else {
         const arrayTextField = [];
-        Object.keys(response.body.deeds.mappings)
+        Object.keys(response.body.deeds.mappings._doc)
           .sort()
           .map(o => {
             arrayTextField.push(o.replace(".keyword", ""));
@@ -40,13 +40,16 @@ router.get("/elasticapi/textfields", cors(), (req, res) => {
 });
 
 router.get("/elasticapi/mapping", cors(), (req, res) => {
-  client.indices.getMapping({ index: "deeds" }, (error, response) => {
-    if (error) {
-      console.log(error);
-    } else {
-      res.send(response.body.deeds.mappings.properties);
+  client.indices.getMapping(
+    { index: "deeds", type: "_doc" },
+    (error, response) => {
+      if (error) {
+        console.log(error);
+      } else {
+        res.send(response.body.deeds.mappings._doc.properties);
+      }
     }
-  });
+  );
 });
 
 router.get("/elasticapi/numfields", cors(), (req, res) => {
@@ -57,7 +60,7 @@ router.get("/elasticapi/numfields", cors(), (req, res) => {
         console.log(error);
       } else {
         const arrayNumField = [];
-        Object.keys(response.body.deeds.mappings)
+        Object.keys(response.body.deeds.mappings._doc)
           .sort()
           .map(o => {
             if (o.indexOf(".rubli") !== -1) arrayNumField.push(o);
@@ -82,7 +85,7 @@ router.get("/elasticapi/boolfields", cors(), (req, res) => {
         console.log(error);
       } else {
         const arrayBoolField = [];
-        Object.keys(response.body.deeds.mappings)
+        Object.keys(response.body.deeds.mappings._doc)
           .sort()
           .map(o => {
             if (o.indexOf(".collected") !== -1) arrayBoolField.push(o);

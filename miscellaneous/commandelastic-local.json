@@ -30,6 +30,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
     }
   },
   "mappings": {
+    "_doc": {
     "properties": {
       "agent": {
         "properties": {
@@ -2100,6 +2101,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       }
     }
   }
+}
 }
 '
 curl -H "Content-Type: application/x-ndjson" -XPOST "http://localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout4.ndjson"
