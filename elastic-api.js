@@ -10,6 +10,7 @@ const router = express.Router();
 
 const client = new Client({
   node: "https://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210",
+  ssl: "http.SecureContextOptions",
   auth: {
     username: "deeds-cercec-1423",
     password: "DcI3Hy9rejHq-ZZNYz93"
