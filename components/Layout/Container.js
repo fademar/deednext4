@@ -6,8 +6,8 @@ function AppLayout(props) {
     <Layout className="layout" style={{ height: "100vh", overflow: "auto" }}>
       <ReactiveBase
         app="deeds"
-        // credentials="deeds-cercec-1423:DcI3Hy9rejHq-ZZNYz93"
-        url="http://localhost:9200"
+        credentials="deeds-cercec-1423:DcI3Hy9rejHq-ZZNYz93"
+        url="http://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210"
       >
         {props.children}
       </ReactiveBase>
