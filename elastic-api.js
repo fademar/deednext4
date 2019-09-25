@@ -9,13 +9,10 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  cloud: {
-    id:
-      "deeds:ZXVyb3BlLXdlc3QxLmdjcC5jbG91ZC5lcy5pbyQ2OWYzMzlhYjI1MTA0YzI0ODI4OTNhY2Y3MjM5Y2QwYyRlYzMwYmUyMjNkOGE0Y2EwOWM5OTJjY2Q1NmRhMjliMQ=="
-  },
+  node: "http://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210",
   auth: {
-    username: "elastic",
-    password: "CpcAVZRSyKPerUZ04fLBRdY5"
+    username: "deeds-cercec-1423",
+    password: "DcI3Hy9rejHq-ZZNYz93"
   }
 });
 

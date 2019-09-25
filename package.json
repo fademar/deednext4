@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.0.0-rc.13",
-    "@elastic/elasticsearch": "^7.1.0",
+    "@elastic/elasticsearch": "^6.8.2",
     "@zeit/next-less": "^1.0.1",
     "antd": "^3.5.4",
     "babel-plugin-import": "^1.7.0",
