@@ -8,8 +8,11 @@ const cors = require("cors");
 
 const router = express.Router();
 
+const pfx = fs.readFileSync("./certificates/deed.pfx");
+
 const client = new Client({
   node: "http://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210",
+  ssl: { pfx: pfx },
   auth: {
     username: "deeds-cercec-1423",
     password: "DcI3Hy9rejHq-ZZNYz93"
