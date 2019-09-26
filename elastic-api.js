@@ -9,12 +9,11 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node:
-    "https://deeds-cercec-1423:DcI3Hy9rejHq-ZZNYz93@deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210"
-  // auth: {
-  //   username: "deeds-cercec-1423",
-  //   password: "DcI3Hy9rejHq-ZZNYz93"
-  // }
+  node: "http://deeds-cercec-1423.elasticsearch.dbs.scalingo.com:30210",
+  auth: {
+    username: "deeds-cercec-1423",
+    password: "DcI3Hy9rejHq-ZZNYz93"
+  }
 });
 
 router.use(bodyParser.json());
