@@ -1,5 +1,6 @@
 const express = require("express");
-const https = require("https");
+const http = require("http");
+const fs = require("fs");
 const next = require("next");
 const elasticAPI = require("./elastic-api");
 
@@ -20,7 +21,7 @@ app
     // handling everything else with Next.js
     server.get("*", handle);
 
-    https.createServer(server).listen(process.env.PORT || 3000, () => {
+    http.createServer(server).listen(process.env.PORT || 3000, () => {
       console.log(`listening on port 3000`);
     });
   })
