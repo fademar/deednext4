@@ -1,5 +1,5 @@
 const express = require("express");
-const http = require("http");
+const https = require("https");
 const fs = require("fs");
 const next = require("next");
 const elasticAPI = require("./elastic-api");
@@ -9,6 +9,12 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const cors = require("cors");
+
+const options = {
+  key: fs.readFileSync("./certificates/deed-key.pem"),
+  cert: fs.readFileSync("./certificates/deed-cert.pem"),
+  ca: fs.readFileSync("./certificates/deed-csr.pem")
+};
 
 app
   .prepare()
@@ -21,7 +27,7 @@ app
     // handling everything else with Next.js
     server.get("*", handle);
 
-    http.createServer(server).listen(process.env.PORT || 3000, () => {
+    https.createServer(options, server).listen(process.env.PORT || 3000, () => {
       console.log(`listening on port 3000`);
     });
   })
