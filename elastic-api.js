@@ -8,7 +8,6 @@ const cors = require("cors");
 
 const router = express.Router();
 
-const pfx = fs.readFileSync("/certificates/deed.pfx");
 const client = new Client({
   node: "http://localhost:9200"
 });
@@ -25,7 +24,7 @@ router.get("/elasticapi/textfields", cors(), (req, res) => {
         console.log(error);
       } else {
         const arrayTextField = [];
-        Object.keys(response.body.deeds.mappings._doc)
+        Object.keys(response.body.deeds.mappings)
           .sort()
           .map(o => {
             arrayTextField.push(o.replace(".keyword", ""));
