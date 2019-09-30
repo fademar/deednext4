@@ -9,7 +9,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "127.0.0.1:9200"
+  node: "http://localhost:9200"
 });
 
 router.use(bodyParser.json());
