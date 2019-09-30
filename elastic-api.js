@@ -9,7 +9,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "http://192.168.44.41:8080"
+  node: "http://192.168.44.41:8080/deeds"
 });
 
 router.use(bodyParser.json());
