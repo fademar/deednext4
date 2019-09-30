@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start -p 8000"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.0.0-rc.13",

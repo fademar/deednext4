@@ -1,10 +1,8 @@
 const express = require("express");
-const fs = require("fs");
 const next = require("next");
 const elasticAPI = require("./elastic-api");
 
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const app = next();
 const handle = app.getRequestHandler();
 
 const cors = require("cors");
