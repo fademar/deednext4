@@ -4,7 +4,7 @@ import { ReactiveBase } from "@appbaseio/reactivesearch";
 function AppLayout(props) {
   return (
     <Layout className="layout" style={{ height: "100vh", overflow: "auto" }}>
-      <ReactiveBase app="deeds" url="http://192.168.44.41:9200">
+      <ReactiveBase app="deeds" url="127.0.0.1:9200">
         {props.children}
       </ReactiveBase>
     </Layout>
