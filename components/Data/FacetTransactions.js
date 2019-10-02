@@ -66,7 +66,7 @@ const FacetTransactions = props => {
           showCount={true}
           filterLabel={props.party + " Action"}
           URLParams={false}
-          title="Action"
+          title={props.party + "Action"}
           onValueChange={value => {
             setAction(value);
           }}

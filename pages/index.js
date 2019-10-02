@@ -119,7 +119,6 @@ class Index extends React.Component {
         <AppHeader />
 
         <AppSider>
-          <Icon type="filter" /> Filters
           <Divider orientation="left">Year</Divider>
           <FacetYear sensors={this.props.sensors} />
           <Divider orientation="left">Agent</Divider>
