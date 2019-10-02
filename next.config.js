@@ -14,7 +14,6 @@ module.exports = withLess({
     javascriptEnabled: true,
     modifyVars: themeVariables // make your antd custom effective
   },
-  distDir: "_next",
   webpack: (config, { isServer }) => {
     if (isServer) {
       const antStyles = /antd\/.*?\/style.*?/;

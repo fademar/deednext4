@@ -121,26 +121,15 @@ class Index extends React.Component {
 
         <AppSider>
           <Divider orientation="left">Search by</Divider>
-          <Collapse bordered={false}>
-            <Panel header="Year" key="year">
-              <FacetYear sensors={this.props.sensors} />
-            </Panel>
-            <Panel header="Agent" key="agent">
-              <FacetParties sensors={this.props.sensors} party="agent" />
-            </Panel>
-            <Panel header="Counter Agent" key="counterAgent">
-              <FacetParties sensors={this.props.sensors} party="counterAgent" />
-            </Panel>
-            <Panel header="Agent action" key="agent-action">
-              <FacetTransactions sensors={this.props.sensors} party="agent" />
-            </Panel>
-            <Panel header="Counter Agent action" key="counterAgent-action">
-              <FacetTransactions
-                sensors={this.props.sensors}
-                party="counterAgent"
-              />
-            </Panel>
-          </Collapse>
+
+          <FacetYear sensors={this.props.sensors} />
+          <FacetParties sensors={this.props.sensors} party="agent" />
+          <FacetParties sensors={this.props.sensors} party="counterAgent" />
+          <FacetTransactions sensors={this.props.sensors} party="agent" />
+          <FacetTransactions
+            sensors={this.props.sensors}
+            party="counterAgent"
+          />
         </AppSider>
 
         <AppContent style={{ marginTop: "100px" }}>
