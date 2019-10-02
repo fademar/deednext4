@@ -15,7 +15,6 @@ import FacetTransactions from "../components/Data/FacetTransactions";
 
 import { Tabs, Collapse, Icon, Typography, Divider } from "antd";
 
-const { Panel } = Collapse;
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
@@ -120,11 +119,14 @@ class Index extends React.Component {
         <AppHeader />
 
         <AppSider>
-          <Divider orientation="left">Search by</Divider>
-
+          <Icon type="filter" /> Filters
+          <Divider orientation="left">Year</Divider>
           <FacetYear sensors={this.props.sensors} />
+          <Divider orientation="left">Agent</Divider>
           <FacetParties sensors={this.props.sensors} party="agent" />
+          <Divider orientation="left">Counter Agent</Divider>
           <FacetParties sensors={this.props.sensors} party="counterAgent" />
+          <Divider orientation="left">Transactions</Divider>
           <FacetTransactions sensors={this.props.sensors} party="agent" />
           <FacetTransactions
             sensors={this.props.sensors}
