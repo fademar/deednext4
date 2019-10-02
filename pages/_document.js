@@ -14,11 +14,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link
-            rel="stylesheet/less"
-            type="text/css"
-            href="/_next/static/styles.less"
-          />
           <meta charSet="utf-8" />
           <meta
             name="viewport"
