@@ -9,7 +9,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "http://neo041/elasticsearch"
+  node: "http://neo041:8080"
 });
 
 router.use(bodyParser.json());
