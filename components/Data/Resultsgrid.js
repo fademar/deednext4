@@ -8,7 +8,8 @@ const columns = [
     title: "",
     dataIndex: "_id",
     key: "_id",
-    defaultSortOrder: "descend"
+    defaultSortOrder: "descend",
+    sorter: (a, b) => a._id - b._id
   },
   {
     title: "Deed Code",
