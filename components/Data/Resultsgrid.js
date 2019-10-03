@@ -36,7 +36,8 @@ const columns = [
   {
     title: "Deed Name",
     dataIndex: "deedName",
-    key: "deedName"
+    key: "deedName",
+    sorter: (a, b) => a.deedName.length - b.deedName.length
   },
   {
     title: "Complete",

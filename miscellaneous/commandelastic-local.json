@@ -870,13 +870,16 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       "deedDate": {
         "properties": {
           "day": {
-            "type": "long"
+            "type": "integer"
           },
           "month": {
-            "type": "long"
+            "type": "integer"
           },
           "year": {
-            "type": "long"
+            "type": "integer"
+          },
+          "jsDate": {
+            "type": "date"
           }
         }
       },
@@ -2102,11 +2105,11 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
 }
 }
 '
-curl -H "Content-Type: application/x-ndjson" -XPOST "http://localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout4.ndjson"
+curl -H "Content-Type: application/x-ndjson" -XPOST "http://localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout5.ndjson"
 curl "localhost:9200/_cat/indices?v"
 
 
-curl -u elastic:CpcAVZRSyKPerUZ04fLBRdY5 "https://69f339ab25104c2482893acf7239cd0c.europe-west1.gcp.cloud.es.io:9243/_bulk?pretty&refresh" -H "Content-Type: application/x-ndjson" -XPOST --data-binary "@logout4.ndjson"
+curl -u elastic:CpcAVZRSyKPerUZ04fLBRdY5 "https://69f339ab25104c2482893acf7239cd0c.europe-west1.gcp.cloud.es.io:9243/_bulk?pretty&refresh" -H "Content-Type: application/x-ndjson" -XPOST --data-binary "@logout5.ndjson"
 
 curl -u elastic:CpcAVZRSyKPerUZ04fLBRdY5 -X DELETE "https://69f339ab25104c2482893acf7239cd0c.europe-west1.gcp.cloud.es.io:9243/deeds?pretty"
 

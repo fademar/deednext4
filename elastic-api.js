@@ -9,7 +9,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "http://neo041:8080"
+  node: "http://localhost:9200"
 });
 
 router.use(bodyParser.json());
@@ -488,7 +488,7 @@ router.get("/elasticapi/coins-zero", cors(), (req, res) => {
 
 router.get("/elasticapi/dates", cors(), (req, res) => {
   const readStream = fs.createReadStream("./miscellaneous/logout3.ndjson");
-  const writeStream = fs.createWriteStream("./miscellaneous/logout4.ndjson", {
+  const writeStream = fs.createWriteStream("./miscellaneous/logout5.ndjson", {
     encoding: "utf8"
   });
   const lineReader = readLine.createInterface({
@@ -508,6 +508,44 @@ router.get("/elasticapi/dates", cors(), (req, res) => {
       json.deedDate.year === ""
         ? (json.deedDate.year = null)
         : (json.deedDate.year = parseInt(json.deedDate.year, 10));
+
+      json.deedDate["jsDate"] = new Date(
+        json.deedDate.year,
+        json.deedDate.month - 1,
+        json.deedDate.day
+      );
+    }
+    let stringLine = JSON.stringify(json) + "\n";
+    writeStream.write(stringLine);
+  });
+  lineReader.on("close", () => {
+    writeStream.end();
+  });
+  res.end();
+});
+
+router.get("/elasticapi/jsdate", cors(), (req, res) => {
+  const readStream = fs.createReadStream("./miscellaneous/logout4.ndjson");
+  const writeStream = fs.createWriteStream("./miscellaneous/logout5.ndjson", {
+    encoding: "utf8"
+  });
+  const lineReader = readLine.createInterface({
+    input: readStream
+  });
+
+  lineReader.on("line", line => {
+    let newLine = line.replace("\n", "");
+    let json = JSON.parse(newLine);
+    if (json.deedDate) {
+      json.deedDate["jsDate"] = new Date(
+        json.deedDate.year,
+        json.deedDate.month === null ? 0 : json.deedDate.month - 1,
+        json.deedDate.day === null ? 1 : json.deedDate.day,
+        12,
+        0,
+        0,
+        0
+      );
     }
     let stringLine = JSON.stringify(json) + "\n";
     writeStream.write(stringLine);
