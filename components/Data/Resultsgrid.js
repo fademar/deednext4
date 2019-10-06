@@ -31,13 +31,23 @@ const columns = [
     key: "deedDate",
     render: (text, record) => (
       <span>
-        {record.deedDate.day === null ? "" : record.deedDate.day}
-        {"-"}
-        {record.deedDate.month === null ? "" : record.deedDate.month}
-        {"-"}
-        {record.deedDate.year === null ? "" : record.deedDate.year}
+        {record.deedDate.day === "" ? "" : record.deedDate.day + "-"}
+        {record.deedDate.month === "" ? "" : record.deedDate.month + "-"}
+        {record.deedDate.year}
       </span>
-    )
+    ),
+    sorter: (a, b, sortOrder) =>
+      (
+        a.deedDate.year +
+        "-" +
+        a.deedDate.month +
+        "-" +
+        a.deedDate.day
+      ).localeCompare(
+        b.deedDate.year + "-" + b.deedDate.month + "-" + b.deedDate.day,
+        "en",
+        { numeric: true }
+      ) * (sortOrder == "asc" ? 1 : -1)
   },
   {
     title: "Deed Name",
