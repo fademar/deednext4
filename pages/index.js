@@ -13,14 +13,13 @@ import FacetParties from "../components/Data/FacetParties";
 import FacetCoParties from "../components/Data/FacetCoParties";
 import FacetTransactions from "../components/Data/FacetTransactions";
 
-import { Tabs, Collapse, Icon, Typography, Divider } from "antd";
+import { Tabs, Collapse, Button, Icon, Typography, Divider } from "antd";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
 class Index extends React.Component {
   static async getInitialProps({ req }) {
-    console.log(req);
     const baseURL = req ? `${req.protocol}://${req.get("Host")}` : "";
     const res1 = await fetch(`${baseURL}/elasticapi/textfields`);
     const res2 = await fetch(`${baseURL}/elasticapi/numfields`);
@@ -56,7 +55,19 @@ class Index extends React.Component {
         "counterAgentActionSensor",
         "agentEngagesSensor",
         "agentWhatObjectSensor",
-        "counterAgentWhatObjectSensor"
+        "counterAgentWhatObjectSensor",
+        "scribeNameSensor",
+        "scribeGeogrStatusSensor",
+        "scribeSocialStatusSensor",
+        "sureties.suretyNameSensor",
+        "sureties.suretyGeogrStatusSensor",
+        "sureties.suretySocialStatusSensor",
+        "whitnesses.whitnessNameSensor",
+        "whitnesses.whitnessGeogrStatusSensor",
+        "whitnesses.whitnessSocialStatusSensor",
+        "otherParticipants.otherParticipantNameSensor",
+        "otherParticipants.otherParticipantGeogrStatusSensor",
+        "otherParticipants.otherParticipantSocialStatusSensor"
       ]
     };
   }
@@ -71,8 +82,14 @@ class Index extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(record) {
-    this.add(record);
+  handleClick(event, record) {
+    if (record) {
+      this.add(record);
+    } else {
+      if (event.target.id === "clearAll") {
+        this.setState({ activeKey: "0", panes: [] });
+      }
+    }
   }
 
   onChange = activeKey => {
@@ -125,11 +142,26 @@ class Index extends React.Component {
           <FacetParties sensors={this.props.sensors} party="agent" />
           <Divider orientation="left">Counter Agent</Divider>
           <FacetParties sensors={this.props.sensors} party="counterAgent" />
+          <FacetCoParties sensors={this.props.sensors} />
           <Divider orientation="left">Transactions</Divider>
           <FacetTransactions sensors={this.props.sensors} party="agent" />
           <FacetTransactions
             sensors={this.props.sensors}
             party="counterAgent"
+          />
+          <Divider orientation="left">Scribe</Divider>
+          <FacetParties sensors={this.props.sensors} party="scribe" />
+          <Divider orientation="left">Sureties</Divider>
+          <FacetParties sensors={this.props.sensors} party="sureties.surety" />
+          <Divider orientation="left">Whitnesses</Divider>
+          <FacetParties
+            sensors={this.props.sensors}
+            party="whitnesses.whitness"
+          />
+          <Divider orientation="left">Other Participants</Divider>
+          <FacetParties
+            sensors={this.props.sensors}
+            party="otherParticipants.otherParticipant"
           />
         </AppSider>
 
@@ -140,6 +172,16 @@ class Index extends React.Component {
             activeKey={this.state.activeKey}
             type="editable-card"
             onEdit={this.onEdit}
+            tabBarExtraContent={
+              <Button
+                type="primary"
+                icon="delete"
+                onClick={this.handleClick}
+                id="clearAll"
+              >
+                clear all tabs
+              </Button>
+            }
           >
             <TabPane tab={"RESULTS"} key={0} closable={false}>
               <SearchBox

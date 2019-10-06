@@ -90,7 +90,7 @@ const FacetCoContractingParties = props => {
               props.sensors.indexOf("collectiveCoAgentsSensor")
             )
           }}
-          showSearch={true}
+          showSearch={false}
           showFilter
           showCount={true}
           filterLabel="collective Co-Agents Relation to Agent"
@@ -129,7 +129,7 @@ const FacetCoContractingParties = props => {
               props.sensors.indexOf("collectiveCoCounterAgentsSensor")
             )
           }}
-          showSearch={true}
+          showSearch={false}
           showFilter
           showCount={true}
           filterLabel="collective Co-Counter Agents Relation to CounterAgent"

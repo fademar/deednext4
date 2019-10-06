@@ -1101,7 +1101,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
         }
       },
       "schemaVersion": {
-        "type": "long"
+        "type": "integer"
       },
       "scribe": {
         "properties": {
@@ -2130,3 +2130,10 @@ curl 'https://deeds-cercec-5545:XonxY7GtyZg-I2ykBCtc@deeds-cercec-5545.elasticse
 
 
 git remote add scalingo git@ssh.osc-fr1.scalingo.com:deeds-cercec.git
+
+
+
+curl -X POST 'http://localhost:3002/api/as/v1/engines/deeds-engine/documents' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer private-th91dfhydh1rjxy14w5pkdvt' \
+  -d ''

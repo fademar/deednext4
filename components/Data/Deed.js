@@ -10,7 +10,6 @@ const Deed = props => {
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let dt = date.getDate();
-  console.log(props.content);
   if (dt < 10) {
     dt = "0" + dt;
   }
@@ -159,10 +158,7 @@ const Deed = props => {
             <Col span={12}>{props.content.registrationDate}</Col>
             {props.content.registrator ? (
               <Col span={12}>
-                <Person
-                  key={"otherParticipant"}
-                  data={props.content.registrator}
-                />
+                <Person key={"registrator"} data={props.content.registrator} />
               </Col>
             ) : (
               <div span={4} />
@@ -221,7 +217,7 @@ const Deed = props => {
             </Col>
             <Col span={12}>
               <Text type="secondary" key="fee-fee">
-                Tax :
+                Fee :
               </Text>{" "}
               {props.content.fees.fee.amount.map((a, index) => (
                 <>

@@ -9,6 +9,7 @@ const FacetContractingParties = props => {
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
+
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
@@ -53,19 +54,21 @@ const FacetContractingParties = props => {
           URLParams={false}
           title="Name"
         />
-        <DataSearch
+        <MultiDropdownList
           style={{ padding: "10px" }}
           componentId={props.party + "SocialStatusSensor"}
-          dataField={[props.party + ".socialStatus"]}
-          queryFormat="and"
+          dataField={props.party + ".socialStatus.keyword"}
           placeholder={"Search for " + props.party + " social status"}
-          autosuggest={true}
+          showCheckbox
+          showSearch={true}
           react={{
             and: newArray(
               props.sensors,
               props.sensors.indexOf(props.party + "SocialStatusSensor")
             )
           }}
+          showFilter
+          showCount={true}
           filterLabel={props.party + " social status"}
           URLParams={false}
           title="Social Status"

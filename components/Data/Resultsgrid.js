@@ -54,8 +54,8 @@ const ResultsGrid = props => {
       react={{
         and: props.sensors
       }}
-      pagination
-      pages={10}
+      size={1000}
+      pagination={false}
       paginationAt="bottom"
       Loader="Loading..."
       noResults="No results were found..."
@@ -75,13 +75,13 @@ const ResultsGrid = props => {
             onRow={(record, rowIndex) => {
               return {
                 onClick: event => {
-                  props.onClick(record);
+                  props.onClick(event, record);
                 } // click row
               };
             }}
             style={{ background: "#ffffff" }}
             rowKey={record => record._id}
-            pagination={false}
+            pagination={true}
             columns={columns}
             dataSource={data}
           />
