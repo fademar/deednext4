@@ -488,7 +488,7 @@ router.get("/elasticapi/coins-zero", cors(), (req, res) => {
 
 router.get("/elasticapi/dates", cors(), (req, res) => {
   const readStream = fs.createReadStream("./miscellaneous/logout3.ndjson");
-  const writeStream = fs.createWriteStream("./miscellaneous/logout5.ndjson", {
+  const writeStream = fs.createWriteStream("./miscellaneous/logout4.ndjson", {
     encoding: "utf8"
   });
   const lineReader = readLine.createInterface({
@@ -546,6 +546,40 @@ router.get("/elasticapi/jsdate", cors(), (req, res) => {
         0,
         0
       );
+    }
+    let stringLine = JSON.stringify(json) + "\n";
+    writeStream.write(stringLine);
+  });
+  lineReader.on("close", () => {
+    writeStream.end();
+  });
+  res.end();
+});
+
+router.get("/elasticapi/datesstring", cors(), (req, res) => {
+  const readStream = fs.createReadStream("./miscellaneous/logout5.ndjson");
+  const writeStream = fs.createWriteStream("./miscellaneous/logout6.ndjson", {
+    encoding: "utf8"
+  });
+  const lineReader = readLine.createInterface({
+    input: readStream
+  });
+
+  lineReader.on("line", line => {
+    let newLine = line.replace("\n", "");
+    let json = JSON.parse(newLine);
+    if (json.deedDate) {
+      json.deedDate.day === null
+        ? (json.deedDate.day = "")
+        : (json.deedDate.day = ("0" + json.deedDate.day.toString()).slice(-2));
+      json.deedDate.month === null
+        ? (json.deedDate.month = "")
+        : (json.deedDate.month = ("0" + json.deedDate.month.toString()).slice(
+            -2
+          ));
+      json.deedDate.year === null
+        ? (json.deedDate.year = "")
+        : (json.deedDate.year = json.deedDate.year.toString());
     }
     let stringLine = JSON.stringify(json) + "\n";
     writeStream.write(stringLine);

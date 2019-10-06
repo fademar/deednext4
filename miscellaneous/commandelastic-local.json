@@ -870,16 +870,13 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       "deedDate": {
         "properties": {
           "day": {
-            "type": "integer"
+            "type": "text"
           },
           "month": {
-            "type": "integer"
+            "type": "text"
           },
           "year": {
-            "type": "integer"
-          },
-          "jsDate": {
-            "type": "date"
+            "type": "text"
           }
         }
       },
@@ -2105,7 +2102,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
 }
 }
 '
-curl -H "Content-Type: application/x-ndjson" -XPOST "http://localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout5.ndjson"
+curl -H "Content-Type: application/x-ndjson" -XPOST "http://localhost:9200/deeds/_bulk?pretty&refresh" --data-binary "@logout6.ndjson"
 curl "localhost:9200/_cat/indices?v"
 
 

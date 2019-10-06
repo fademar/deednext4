@@ -14,7 +14,11 @@ const columns = [
   {
     title: "Deed Code",
     dataIndex: "deedCode",
-    key: "deedCode"
+    key: "deedCode",
+    sorter: (a, b, sortOrder) =>
+      a.deedCode.localeCompare(b.deedCode + "-" + b.deedRef, "en", {
+        numeric: true
+      }) * (sortOrder == "asc" ? 1 : -1)
   },
   {
     title: "Deed Reference",
@@ -27,8 +31,10 @@ const columns = [
     key: "deedDate",
     render: (text, record) => (
       <span>
-        {record.deedDate.day === null ? "" : record.deedDate.day}{" "}
-        {record.deedDate.month === null ? "" : record.deedDate.month}{" "}
+        {record.deedDate.day === null ? "" : record.deedDate.day}
+        {"-"}
+        {record.deedDate.month === null ? "" : record.deedDate.month}
+        {"-"}
         {record.deedDate.year === null ? "" : record.deedDate.year}
       </span>
     )
@@ -37,7 +43,8 @@ const columns = [
     title: "Deed Name",
     dataIndex: "deedName",
     key: "deedName",
-    sorter: (a, b) => a.deedName.length - b.deedName.length
+    sorter: (a, b, sortOrder) =>
+      a.deedName.localeCompare(b.deedName, "ru") * (sortOrder == "asc" ? 1 : -1)
   },
   {
     title: "Complete",
