@@ -71,8 +71,8 @@ const columns = [
       }
     ],
     onFilter: (value, record) => record.complete === value,
-    render: record => {
-      if (record.complete === true) {
+    render: complete => {
+      if (complete === true) {
         return <Tag color="green">yes</Tag>;
       } else {
         return <Tag color="volcano">no</Tag>;
