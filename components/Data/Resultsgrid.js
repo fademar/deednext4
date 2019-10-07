@@ -59,7 +59,18 @@ const columns = [
   {
     title: "Complete",
     dataIndex: "complete",
-    key: "complete"
+    key: "complete",
+    filters: [
+      {
+        text: "true",
+        value: "true"
+      },
+      {
+        text: "false",
+        value: "false"
+      }
+    ],
+    onFilter: (value, record) => (record.complete = value)
   }
 ];
 
