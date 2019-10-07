@@ -12,6 +12,7 @@ import FacetYear from "../components/Data/Facetyear";
 import FacetParties from "../components/Data/FacetParties";
 import FacetCoParties from "../components/Data/FacetCoParties";
 import FacetTransactions from "../components/Data/FacetTransactions";
+import FacetBox from "../components/Data/Facetbox";
 
 import { Tabs, Collapse, Button, Icon, Typography, Divider } from "antd";
 
@@ -166,6 +167,7 @@ class Index extends React.Component {
         </AppSider>
 
         <AppContent style={{ marginTop: "100px" }}>
+          <FacetBox textFields={this.props.textFields} />
           <Tabs
             hideAdd
             onChange={this.onChange}
