@@ -6,7 +6,6 @@ import AppSider from "../components/Layout/Sider";
 import AppContent from "../components/Layout/Content";
 import AppFooter from "../components/Layout/Footer";
 import ResultsGrid from "../components/Data/Resultsgrid";
-import SearchBox from "../components/Data/Searchbox";
 import DeedPane from "../components/Data/Deed";
 import FacetYear from "../components/Data/Facetyear";
 import FacetParties from "../components/Data/FacetParties";
@@ -135,39 +134,7 @@ class Index extends React.Component {
     return (
       <Container>
         <AppHeader />
-
-        <AppSider>
-          <Divider orientation="left">Year</Divider>
-          <FacetYear sensors={this.props.sensors} />
-          <Divider orientation="left">Agent</Divider>
-          <FacetParties sensors={this.props.sensors} party="agent" />
-          <Divider orientation="left">Counter Agent</Divider>
-          <FacetParties sensors={this.props.sensors} party="counterAgent" />
-          <FacetCoParties sensors={this.props.sensors} />
-          <Divider orientation="left">Transactions</Divider>
-          <FacetTransactions sensors={this.props.sensors} party="agent" />
-          <FacetTransactions
-            sensors={this.props.sensors}
-            party="counterAgent"
-          />
-          <Divider orientation="left">Scribe</Divider>
-          <FacetParties sensors={this.props.sensors} party="scribe" />
-          <Divider orientation="left">Sureties</Divider>
-          <FacetParties sensors={this.props.sensors} party="sureties.surety" />
-          <Divider orientation="left">Whitnesses</Divider>
-          <FacetParties
-            sensors={this.props.sensors}
-            party="whitnesses.whitness"
-          />
-          <Divider orientation="left">Other Participants</Divider>
-          <FacetParties
-            sensors={this.props.sensors}
-            party="otherParticipants.otherParticipant"
-          />
-        </AppSider>
-
         <AppContent style={{ marginTop: "100px" }}>
-          <FacetBox textFields={this.props.textFields} />
           <Tabs
             hideAdd
             onChange={this.onChange}
@@ -185,15 +152,15 @@ class Index extends React.Component {
               </Button>
             }
           >
-            <TabPane tab={"RESULTS"} key={0} closable={false}>
-              <SearchBox
+            <TabPane tab={"FILTERS"} key={0} closable={false}>
+              <FacetBox
+                style={{ marginBottom: "20px", height: "100vh" }}
                 textFields={this.props.textFields}
-                numberFields={this.props.numberFields}
-                booleanFields={this.props.booleanFields}
-                sensors={this.props.sensors}
               />
+            </TabPane>
+            <TabPane tab={"RESULTS"} key={1} closable={false}>
               <ResultsGrid
-                sensors={this.props.sensors}
+                sensors={this.props.textFields}
                 onClick={this.handleClick}
               />
             </TabPane>
