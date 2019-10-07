@@ -4,7 +4,7 @@ import Container from "../components/Layout/Container";
 import AppHeader from "../components/Layout/Header";
 import AppSider from "../components/Layout/Sider";
 import AppContent from "../components/Layout/Content";
-import FacetBox from "../components/Data/Facetbox";
+import AppFooter from "../components/Layout/Footer";
 import ResultsGrid from "../components/Data/Resultsgrid";
 import SearchBox from "../components/Data/Searchbox";
 import DeedPane from "../components/Data/Deed";
@@ -166,7 +166,6 @@ class Index extends React.Component {
         </AppSider>
 
         <AppContent style={{ marginTop: "100px" }}>
-          <FacetBox textFields={this.props.textFields} />
           <Tabs
             hideAdd
             onChange={this.onChange}
