@@ -137,6 +137,7 @@ class Index extends React.Component {
         <AppContent style={{ marginTop: "100px" }}>
           <Tabs
             hideAdd
+            style={{ height: "500vh" }}
             onChange={this.onChange}
             activeKey={this.state.activeKey}
             type="editable-card"
@@ -154,7 +155,7 @@ class Index extends React.Component {
           >
             <TabPane tab={"FILTERS"} key={0} closable={false}>
               <FacetBox
-                style={{ marginBottom: "20px", height: "100vh" }}
+                style={{ marginBottom: "20px" }}
                 textFields={this.props.textFields}
               />
             </TabPane>
