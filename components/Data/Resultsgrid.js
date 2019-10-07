@@ -73,9 +73,9 @@ const columns = [
     onFilter: (value, record) => record.complete === value,
     render: record => {
       if (record.complete === true) {
-        return <Tag color="green">{record.complete.toString()}</Tag>;
+        return <Tag color="green">{record.complete}</Tag>;
       } else {
-        return <Tag color="volcano">{record.complete.toString()}</Tag>;
+        return <Tag color="volcano">{record.complete}</Tag>;
       }
     }
   }
