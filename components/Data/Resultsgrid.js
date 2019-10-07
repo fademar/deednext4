@@ -70,7 +70,7 @@ const columns = [
         value: "false"
       }
     ],
-    onFilter: (value, record) => (record.complete = value)
+    onFilter: (value, record) => record.complete.indexOf(value) === 0
   }
 ];
 
