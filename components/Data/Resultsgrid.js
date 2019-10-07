@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Divider } from "antd";
+import { Table, Divider, Tag } from "antd";
 import { ReactiveList } from "@appbaseio/reactivesearch";
 import Link from "next/link";
 
@@ -70,7 +70,14 @@ const columns = [
         value: false
       }
     ],
-    onFilter: (value, record) => record.complete === value
+    onFilter: (value, record) => record.complete === value,
+    render: record => {
+      if (record.complete === true) {
+        return <Tag color="green">{record.complete.toString()}</Tag>;
+      } else {
+        return <Tag color="volcano">{record.complete.toString()}</Tag>;
+      }
+    }
   }
 ];
 
