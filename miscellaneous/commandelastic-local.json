@@ -870,13 +870,37 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       "deedDate": {
         "properties": {
           "day": {
-            "type": "text"
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": {
+              "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+              }
+            }
           },
           "month": {
-            "type": "text"
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
           },
           "year": {
-            "type": "text"
+            "type": "text",
+            "analyzer": "ngram_russian",
+            "search_analyzer": "autocomplete_search",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
           }
         }
       },

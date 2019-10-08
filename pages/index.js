@@ -1,4 +1,6 @@
 import fetch from "isomorphic-fetch";
+import { DataSearch, SelectedFilters } from "@appbaseio/reactivesearch";
+import * as _ from "lodash";
 
 import Container from "../components/Layout/Container";
 import AppHeader from "../components/Layout/Header";
@@ -12,11 +14,12 @@ import FacetParties from "../components/Data/FacetParties";
 import FacetCoParties from "../components/Data/FacetCoParties";
 import FacetTransactions from "../components/Data/FacetTransactions";
 import FacetBox from "../components/Data/Facetbox";
+import NumericBox from "../components/Data/Numericbox";
+import BooleanBox from "../components/Data/Booleanbox";
 
-import { Tabs, Collapse, Button, Icon, Typography, Divider } from "antd";
+import { Tabs, Button, Typography, Row, Col, Card, Icon } from "antd";
 
 const { TabPane } = Tabs;
-const { Title } = Typography;
 
 class Index extends React.Component {
   static async getInitialProps({ req }) {
@@ -31,44 +34,19 @@ class Index extends React.Component {
     const booleanFields = await res3.json();
     const mapping = await map.json();
 
+    const sensors = _.concat(
+      textFields,
+      numberFields,
+      booleanFields,
+      "fullsearch"
+    );
+
     return {
       textFields: textFields,
       numberFields: numberFields,
       booleanFields: booleanFields,
       mapping: mapping,
-      sensors: [
-        "searchSensor",
-        "yearSensor",
-        "agentSexSensor",
-        "counterAgentSexSensor",
-        "agentNameSensor",
-        "counterAgentNameSensor",
-        "agentGeogrStatusSensor",
-        "counterAgentGeogrStatusSensor",
-        "agentSocialStatusSensor",
-        "counterAgentSocialStatusSensor",
-        "coAgentSexSensor",
-        "coAounterAgentSexSensor",
-        "collectiveCoAgentsSensor",
-        "collectiveCoCounterAgentsSensor",
-        "agentActionSensor",
-        "counterAgentActionSensor",
-        "agentEngagesSensor",
-        "agentWhatObjectSensor",
-        "counterAgentWhatObjectSensor",
-        "scribeNameSensor",
-        "scribeGeogrStatusSensor",
-        "scribeSocialStatusSensor",
-        "sureties.suretyNameSensor",
-        "sureties.suretyGeogrStatusSensor",
-        "sureties.suretySocialStatusSensor",
-        "whitnesses.whitnessNameSensor",
-        "whitnesses.whitnessGeogrStatusSensor",
-        "whitnesses.whitnessSocialStatusSensor",
-        "otherParticipants.otherParticipantNameSensor",
-        "otherParticipants.otherParticipantGeogrStatusSensor",
-        "otherParticipants.otherParticipantSocialStatusSensor"
-      ]
+      sensors: sensors
     };
   }
   constructor(props) {
@@ -130,6 +108,18 @@ class Index extends React.Component {
     this.setState({ panes, activeKey });
   };
 
+  fullQuery = value => {
+    return {
+      query: {
+        multi_match: {
+          query: value,
+          zero_terms_query: "all",
+          type: "cross_fields"
+        }
+      }
+    };
+  };
+
   render() {
     return (
       <Container>
@@ -153,17 +143,65 @@ class Index extends React.Component {
               </Button>
             }
           >
-            <TabPane tab={"FILTERS"} key={0} closable={false}>
-              <FacetBox
-                style={{ marginBottom: "20px" }}
-                textFields={this.props.textFields}
-              />
-            </TabPane>
-            <TabPane tab={"RESULTS"} key={1} closable={false}>
-              <ResultsGrid
-                sensors={this.props.textFields}
-                onClick={this.handleClick}
-              />
+            <TabPane tab={"SEARCH"} key={0} closable={false}>
+              <Row style={{ margin: "30px 0" }}>
+                <Col span={24}>
+                  <Card title="FULL-TEXT search">
+                    <DataSearch
+                      componentId="fullsearch"
+                      dataField={this.props.textFields}
+                      queryFormat="and"
+                      autosuggest={true}
+                      filterLabel="search"
+                      placeholder="Full-Text Search : search for any term anywhere..."
+                      URLParams={false}
+                      customQuery={this.fullQuery}
+                      debounce={300}
+                      react={{
+                        and: this.props.textFields
+                      }}
+                    />
+                  </Card>
+                </Col>
+              </Row>
+              <Row gutter={8}>
+                <Col span={10}>
+                  <Card title="Search in TEXT FIELDS">
+                    <FacetBox
+                      style={{ marginBottom: "20px" }}
+                      textFields={this.props.textFields}
+                    />
+                  </Card>
+                </Col>
+                <Col span={7}>
+                  <Card title="Search in NUMERIC FIELDS">
+                    <NumericBox
+                      style={{ marginBottom: "20px" }}
+                      numberFields={this.props.numberFields}
+                    />
+                  </Card>
+                </Col>
+                <Col span={7}>
+                  <Card title="Search in BOOLEAN FIELDS">
+                    <BooleanBox
+                      style={{ marginBottom: "20px" }}
+                      booleanFields={this.props.booleanFields}
+                    />
+                  </Card>
+                </Col>
+              </Row>
+              <Row style={{ marginTop: "30px" }}>
+                <Col span={24}>
+                  <SelectedFilters
+                    showClearAll={true}
+                    clearAllLabel="Clear filters"
+                  />
+                  <ResultsGrid
+                    sensors={this.props.sensors}
+                    onClick={this.handleClick}
+                  />
+                </Col>
+              </Row>
             </TabPane>
             {this.state.panes.map(pane => (
               <TabPane tab={pane.title} key={pane.key} closable={true}>

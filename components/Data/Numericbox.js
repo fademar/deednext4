@@ -1,18 +1,18 @@
 import { Select } from "antd";
 import React, { useState, useEffect } from "react";
-import { MultiDropdownList, SelectedFilters } from "@appbaseio/reactivesearch";
+import { NumberBox } from "@appbaseio/reactivesearch";
 
 const { Option } = Select;
 
-const FacetBox = props => {
-  const [textfields, setTextFields] = useState([]);
+const NumericBox = props => {
+  const [numberFields, setNumberFields] = useState([]);
 
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
 
   const children = [];
-  props.textFields.map(element => {
+  props.numberFields.map(element => {
     children.push(
       <Option key={element} value={element}>
         {element}
@@ -21,7 +21,7 @@ const FacetBox = props => {
   });
 
   const handleChange = value => {
-    setTextFields(value);
+    setNumberFields(value);
   };
 
   return (
@@ -29,7 +29,7 @@ const FacetBox = props => {
       <Select
         mode="multiple"
         style={{ width: "100%", margin: "20px 0" }}
-        placeholder="Please select a text field"
+        placeholder="Please select a numeric field"
         allowClear={true}
         size="large"
         onChange={handleChange}
@@ -37,19 +37,25 @@ const FacetBox = props => {
         {children}
       </Select>
 
-      {textfields.map(field => (
+      {numberFields.map(field => (
         <div key={field}>
-          <MultiDropdownList
+          <NumberBox
             style={{ padding: "10px" }}
             componentId={field}
-            dataField={field + ".keyword"}
-            showCheckbox
-            react={{
-              and: newArray(props.textFields, props.textFields.indexOf(field))
-            }}
-            showSearch={true}
-            showCount={true}
+            dataField={field}
+            data={{ label: "", start: 0, end: 10 }}
+            title={field}
+            defaultValue={0}
+            labelPosition="left"
+            queryFormat="exact"
             URLParams={false}
+            react={{
+              and: newArray(
+                props.numberFields,
+                props.numberFields.indexOf(field)
+              )
+            }}
+            showFilter
             title={field}
           />
         </div>
@@ -58,4 +64,4 @@ const FacetBox = props => {
   );
 };
 
-export default FacetBox;
+export default NumericBox;
