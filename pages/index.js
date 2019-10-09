@@ -175,18 +175,18 @@ class Index extends React.Component {
                 </Col>
                 <Col span={7}>
                   <Card title="Search in NUMERIC FIELDS">
-                    <NumericBox
+                    {/* <NumericBox
                       style={{ marginBottom: "20px" }}
                       numberFields={this.props.numberFields}
-                    />
+                    /> */}
                   </Card>
                 </Col>
                 <Col span={7}>
                   <Card title="Search in BOOLEAN FIELDS">
-                    <BooleanBox
+                    {/* <BooleanBox
                       style={{ marginBottom: "20px" }}
                       booleanFields={this.props.booleanFields}
-                    />
+                    /> */}
                   </Card>
                 </Col>
               </Row>
