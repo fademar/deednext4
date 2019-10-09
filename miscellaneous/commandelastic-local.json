@@ -100,7 +100,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
             }
           },
           "nbParticipants": {
-            "type": "long"
+            "type": "integer"
           },
           "patronyme": {
             "type": "text",
@@ -597,7 +597,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       "collectiveCoAgent": {
         "properties": {
           "numberOfParticipants": {
-            "type": "long"
+            "type": "integer"
           },
           "relationToAgent": {
             "type": "text",
@@ -626,7 +626,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
       "collectiveCoCounterAgent": {
         "properties": {
           "numberOfParticipants": {
-            "type": "long"
+            "type": "integer"
           },
           "relationToCounterAgent": {
             "type": "text",
@@ -724,7 +724,7 @@ curl -X PUT "http://localhost:9200/deeds" -H 'Content-Type: application/json' -d
             }
           },
           "nbParticipants": {
-            "type": "long"
+            "type": "integer"
           },
           "patronyme": {
             "type": "text",
@@ -2158,3 +2158,17 @@ curl -X POST 'http://localhost:3002/api/as/v1/engines/deeds-engine/documents' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer private-th91dfhydh1rjxy14w5pkdvt' \
   -d ''
+
+
+
+curl -X GET "localhost:9200/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+    "query": {
+        "range" : {
+            "collectiveCoAgent.numberOfParticipants" : {
+                "lt" : 1
+            }
+        }
+    }
+}
+'

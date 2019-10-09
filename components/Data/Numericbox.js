@@ -1,6 +1,6 @@
 import { Select } from "antd";
 import React, { useState, useEffect } from "react";
-import { NumberBox } from "@appbaseio/reactivesearch";
+import { SingleRange, RangeSlider } from "@appbaseio/reactivesearch";
 
 const { Option } = Select;
 
@@ -37,29 +37,44 @@ const NumericBox = props => {
         {children}
       </Select>
 
-      {numberFields.map(field => (
-        <div key={field}>
-          <NumberBox
-            style={{ padding: "10px" }}
-            componentId={field}
-            dataField={field}
-            data={{ label: "", start: 0, end: 10 }}
-            title={field}
-            defaultValue={0}
-            labelPosition="left"
-            queryFormat="exact"
-            URLParams={false}
-            react={{
-              and: newArray(
-                props.numberFields,
-                props.numberFields.indexOf(field)
-              )
-            }}
-            showFilter
-            title={field}
-          />
-        </div>
-      ))}
+      {numberFields.map(field =>
+        field.includes("nbParticipants") ||
+        field.includes("numberOfParticipants") ? (
+          <div key={field}>
+            <RangeSlider
+              componentId={field}
+              dataField={field}
+              range={{
+                start: 0,
+                end: 10
+              }}
+              showFilter={true}
+              filterLabel={field}
+              URLParams={false}
+              stepValue={1}
+              showHistogram={true}
+              snap={true}
+            />
+          </div>
+        ) : (
+          <div key={field}>
+            <SingleRange
+              componentId={field}
+              dataField={field}
+              data={[
+                { start: 0, end: 1, label: "Amount < 1" },
+                { start: 1, end: 5, label: "Amount 1 to 5" },
+                { start: 5, end: 100, label: "Amount > 5" }
+              ]}
+              title={field}
+              showRadio={true}
+              showFilter={true}
+              filterLabel={field}
+              URLParams={false}
+            />
+          </div>
+        )
+      )}
     </>
   );
 };

@@ -4,15 +4,9 @@ import * as _ from "lodash";
 
 import Container from "../components/Layout/Container";
 import AppHeader from "../components/Layout/Header";
-import AppSider from "../components/Layout/Sider";
 import AppContent from "../components/Layout/Content";
-import AppFooter from "../components/Layout/Footer";
 import ResultsGrid from "../components/Data/Resultsgrid";
 import DeedPane from "../components/Data/Deed";
-import FacetYear from "../components/Data/Facetyear";
-import FacetParties from "../components/Data/FacetParties";
-import FacetCoParties from "../components/Data/FacetCoParties";
-import FacetTransactions from "../components/Data/FacetTransactions";
 import FacetBox from "../components/Data/Facetbox";
 import NumericBox from "../components/Data/Numericbox";
 import BooleanBox from "../components/Data/Booleanbox";
@@ -175,18 +169,18 @@ class Index extends React.Component {
                 </Col>
                 <Col span={7}>
                   <Card title="Search in NUMERIC FIELDS">
-                    {/* <NumericBox
+                    <NumericBox
                       style={{ marginBottom: "20px" }}
                       numberFields={this.props.numberFields}
-                    /> */}
+                    />
                   </Card>
                 </Col>
                 <Col span={7}>
                   <Card title="Search in BOOLEAN FIELDS">
-                    {/* <BooleanBox
+                    <BooleanBox
                       style={{ marginBottom: "20px" }}
                       booleanFields={this.props.booleanFields}
-                    /> */}
+                    />
                   </Card>
                 </Col>
               </Row>
