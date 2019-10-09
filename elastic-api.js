@@ -9,7 +9,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const client = new Client({
-  node: "http://neo041:8080"
+  node: "http://localhost:9200"
 });
 
 router.use(bodyParser.json());

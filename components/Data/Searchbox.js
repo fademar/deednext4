@@ -31,23 +31,6 @@ const SearchBox = props => {
     <>
       <Row gutter={16}>
         <Col span={24}>
-          <DataSearch
-            componentId="searchSensor"
-            dataField={props.textFields}
-            queryFormat="and"
-            autosuggest={true}
-            filterLabel="search"
-            placeholder="Full-Text Search : search for any term anywhere..."
-            URLParams={false}
-            customQuery={fullQuery}
-            debounce={300}
-            react={{
-              and: newArray(
-                props.sensors,
-                props.sensors.indexOf("searchSensor")
-              )
-            }}
-          />
           <SelectedFilters showClearAll={true} clearAllLabel="Clear filters" />
         </Col>
       </Row>

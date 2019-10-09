@@ -72,11 +72,11 @@ const columns = [
     ],
     onFilter: (value, record) => record.complete === value,
     render: complete => {
-      if (complete === true) {
-        return <Tag color="green">yes</Tag>;
-      } else {
-        return <Tag color="volcano">no</Tag>;
-      }
+      return complete === true ? (
+        <Tag color="green">yes</Tag>
+      ) : (
+        <Tag color="volcano">no</Tag>
+      );
     }
   }
 ];

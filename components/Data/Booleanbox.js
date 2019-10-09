@@ -1,18 +1,18 @@
 import { Select } from "antd";
 import React, { useState, useEffect } from "react";
-import { MultiDropdownList, SelectedFilters } from "@appbaseio/reactivesearch";
+import { SingleList } from "@appbaseio/reactivesearch";
 
 const { Option } = Select;
 
-const FacetBox = props => {
-  const [textfields, setTextFields] = useState([]);
+const BooleanBox = props => {
+  const [booleanFields, setBooleanFields] = useState([]);
 
   const newArray = (arr, index) => {
     return arr.slice(0, index).concat(arr.slice(index + 1));
   };
 
   const children = [];
-  props.textFields.map(element => {
+  props.booleanFields.map(element => {
     children.push(
       <Option key={element} value={element}>
         {element}
@@ -21,7 +21,7 @@ const FacetBox = props => {
   });
 
   const handleChange = value => {
-    setTextFields(value);
+    setBooleanFields(value);
   };
 
   return (
@@ -29,7 +29,7 @@ const FacetBox = props => {
       <Select
         mode="multiple"
         style={{ width: "100%", margin: "20px 0" }}
-        placeholder="Please select a text field"
+        placeholder="Please select a boolean field"
         allowClear={true}
         size="large"
         onChange={handleChange}
@@ -37,17 +37,19 @@ const FacetBox = props => {
         {children}
       </Select>
 
-      {textfields.map(field => (
+      {booleanFields.map(field => (
         <div key={field}>
-          <MultiDropdownList
+          <SingleList
             style={{ padding: "10px" }}
             componentId={field}
-            dataField={field + ".keyword"}
-            showCheckbox
+            dataField={field}
             react={{
-              and: newArray(props.textFields, props.textFields.indexOf(field))
+              and: newArray(
+                props.booleanFields,
+                props.booleanFields.indexOf(field)
+              )
             }}
-            showSearch={true}
+            showRadio={true}
             showCount={true}
             URLParams={false}
             title={field}
@@ -58,4 +60,4 @@ const FacetBox = props => {
   );
 };
 
-export default FacetBox;
+export default BooleanBox;
